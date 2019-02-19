@@ -12,7 +12,7 @@ public class OutkuOrder {
 	}
 
 	public OutkuOrder(String oRDER_NUMBERS, String cUSTOMER_NAME,
-			String cUSTOMER_ID, String oUTDATE, String oUTTIME, Double totle) {
+			String cUSTOMER_ID, String oUTDATE, String oUTTIME, Double total) {
 		this.ORDER_NUMBERS = oRDER_NUMBERS;
 		this.CUSTOMER_NAME = cUSTOMER_NAME;
 		this.CUSTOMER_ID = cUSTOMER_ID;

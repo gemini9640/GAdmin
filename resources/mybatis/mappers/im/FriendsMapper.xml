@@ -1,7 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gadmin.dao.IMFriendsMapper">
-	
+	<resultMap type="GroupFriends" id="GroupFriendsResultMap">
+		<association property="imFriends" javaType="IMFriends">
+			<id column="f.FRIENDS_ID" property="FRIENDS_ID"/>
+			<result column="f.USERNAME" property="USERNAME"/>
+			<result column="f.FUSERNAME" property="FUSERNAME"/>
+			<result column="f.CTIME" property="CTIME"/>
+			<result column="f.ALLOW" property="ALLOW"/>
+			<result column="f.FGROUP_ID" property="FGROUP_ID"/>
+			<result column="f.DTIME" property="DTIME"/>
+			<result column="f.BZ" property="BZ"/>
+		</association>
+		<result column="u.NAME" property="u_NAME"/>
+		<result column="g.NAME" property="g_NAME"/>
+		<result column="p.PHOTO2" property="p_PHOTO2"/>
+	</resultMap>	
+	<resultMap type="GroupFriendsWithStatus" id="GroupFriendsWithStatusResultMap">
+		<association property="imFriends" javaType="IMFriends">
+			<id column="f.FRIENDS_ID" property="FRIENDS_ID"/>
+			<result column="f.USERNAME" property="USERNAME"/>
+			<result column="f.FUSERNAME" property="FUSERNAME"/>
+			<result column="f.CTIME" property="CTIME"/>
+			<result column="f.ALLOW" property="ALLOW"/>
+			<result column="f.FGROUP_ID" property="FGROUP_ID"/>
+			<result column="f.DTIME" property="DTIME"/>
+			<result column="f.BZ" property="BZ"/>
+		</association>
+		<result column="u.NAME" property="u_NAME"/>
+		<result column="g.NAME" property="g_NAME"/>
+		<result column="p.PHOTO2" property="p_PHOTO2"/>
+		<result column="s.ONLINE" property="s_ONLINE"/>
+		<result column="s.AUTOGRAPH" property="s_AUTOGRAPH"/>
+	</resultMap>
+	<resultMap type="ConnectedFriends" id="ConnectedFriendsResultMap">
+		<result column="f.USERNAME" property="f_USERNAME"/>
+		<result column="u.NAME" property="u_NAME"/>
+	</resultMap>
+	<resultMap type="QuickSearchFriends" id="QuickSearchFriendsResultMap">
+		<result column="u.NAME" property="u_NAME"/>
+		<result column="u.USERNAME" property="u_USERNAME"/>
+		<result column="p.PHOTO1" property="p_PHOTO1"/>
+		<result column="p.PHOTO2" property="p_PHOTO2"/>
+	</resultMap>
 	<!--表名 -->
 	<sql id="tableName">
 		IM_FRIENDS
@@ -64,7 +105,7 @@
 	</sql>
 	
 	<!-- 新增 -->
-	<insert id="save" parameterType="pd">
+	<insert id="save" parameterType="IMFriends">
 		insert into 
 	<include refid="tableName"></include>
 		(
@@ -75,7 +116,7 @@
 	</insert>
 	
 	<!-- 删除 -->
-	<delete id="delete" parameterType="pd">
+	<delete id="deleteById" parameterType="String">
 		delete from
 		<include refid="tableName"></include>
 		where 
@@ -83,7 +124,7 @@
 	</delete>
 	
 	<!-- 拉黑 -->
-	<delete id="pullblack" parameterType="pd">
+	<delete id="pullblack" parameterType="map">
 		delete from
 		<include refid="tableName"></include>
 		where 
@@ -93,7 +134,7 @@
 	</delete>
 	
 	<!-- 修改 -->
-	<update id="edit" parameterType="pd">
+	<update id="edit" parameterType="IMFriends">
 		update
 		<include refid="tableName"></include>
 		set 
@@ -103,7 +144,7 @@
 	</update>
 	
 	<!-- 修改同意状态 -->
-	<update id="editAllow" parameterType="pd">
+	<update id="editAllow" parameterType="IMFriends">
 		update
 		<include refid="tableName"></include>
 		set 
@@ -116,7 +157,7 @@
 	</update>
 	
 	<!-- 通过ID获取数据 -->
-	<select id="findById" parameterType="pd" resultType="pd">
+	<select id="findById" parameterType="String" resultType="IMFriends">
 		select 
 		<include refid="Field"></include>
 		from 
@@ -126,7 +167,7 @@
 	</select>
 	
 	<!-- 获取我的某个好友-->
-	<select id="findMyFriend" parameterType="pd" resultType="pd">
+	<select id="findMyFriend" parameterType="map" resultType="IMFriends">
 		select 
 		<include refid="Field"></include>
 		from 
@@ -137,12 +178,13 @@
 			f.USERNAME = #{USERNAME}
 	</select>
 	
+	
 	<!-- 列表 -->
-	<select id="datalistPage" parameterType="page" resultType="pd">
+	<select id="datalistPage" parameterType="map" resultType="GroupFriendsResultMap">
 		select
 			<include refid="Field"></include>,
 			u.NAME,
-			g.NAME GNAME,
+			g.NAME,
 			p.PHOTO2
 		from 
 			<include refid="tableName"></include> f
@@ -159,34 +201,34 @@
 		on
 			f.FUSERNAME = p.USERNAME
 		where 1=1
-		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+		<if test="keywords!= null and keywords != ''"><!-- 关键词检索 -->
 			and
 				(
-					f.FUSERNAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					f.FUSERNAME LIKE CONCAT(CONCAT('%', #{keywords}),'%')
 					or 
-					u.NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+					u.NAME LIKE CONCAT(CONCAT('%', #{keywords}),'%') 
 				)
 		</if>
-		<if test="pd.lastStart!=null and pd.lastStart!=''"><!-- 开始时间检索 -->
-			and f.CTIME &gt;= #{pd.lastStart} 
+		<if test="lastStart!=null and lastStart!=''"><!-- 开始时间检索 -->
+			and f.CTIME &gt;= #{lastStart} 
 		</if>
-		<if test="pd.lastEnd!=null and pd.lastEnd!=''"><!-- 结束时间检索 -->
-			and f.CTIME &lt;= #{pd.lastEnd} 
+		<if test="lastEnd!=null and lastEnd!=''"><!-- 结束时间检索 -->
+			and f.CTIME &lt;= #{lastEnd} 
 		</if>
-		<if test="pd.FGROUP_ID!=null and pd.FGROUP_ID!=''"><!-- 分组检索 -->
-			and f.FGROUP_ID = #{pd.FGROUP_ID} 
+		<if test="FGROUP_ID!=null and FGROUP_ID!=''"><!-- 分组检索 -->
+			and f.FGROUP_ID = #{FGROUP_ID} 
 		</if>
 		and
-			f.USERNAME = #{pd.USERNAME}
+			f.USERNAME = #{USERNAME}
 		order by f.CTIME desc
 	</select>
 	
 	<!-- 列表(全部自己的好友) -->
-	<select id="listAll" parameterType="pd" resultType="pd">
+	<select id="listAllWithStatusByUsername" parameterType="String" resultType="GroupFriendsWithStatusResultMap">
 		select
 			<include refid="Field"></include>,
 			u.NAME,
-			g.NAME GNAME,
+			g.NAME,
 			p.PHOTO2,
 			s.ONLINE,
 			s.AUTOGRAPH
@@ -215,7 +257,7 @@
 	</select>
 	
 	<!-- 获取某个好友详细信息 -->
-	<select id="getTheFriend" parameterType="pd" resultType="pd">
+	<select id="getTheFriend" parameterType="map" resultType="GroupFriendsWithStatusResultMap">
 		select
 			<include refid="Field"></include>,
 			u.NAME,
@@ -248,7 +290,7 @@
 	</select>
 	
 	<!-- 列表(全部有自己好友的用户) -->
-	<select id="listAllFri" parameterType="pd" resultType="pd">
+	<select id="listAllConnectedFriends" parameterType="String" resultType="ConnectedFriendsResultMap">
 		select
 			f.USERNAME,
 			u.NAME
@@ -265,7 +307,7 @@
 	</select>
 	
 	<!-- 列表(添加好友页面检索好友) -->
-	<select id="listAllToSearch" parameterType="pd" resultType="pd">
+	<select id="listAllToSearch" parameterType="map" resultType="QuickSearchFriendsResultMap">
 		select
 			u.NAME,
 			u.USERNAME,
@@ -288,15 +330,13 @@
 	</select>
 	
 	<!-- 批量删除 -->
-	<delete id="deleteAll" parameterType="String">
+	<delete id="deleteAllByIds" parameterType="String">
 		delete from
 		<include refid="tableName"></include>
 		where 
 			FRIENDS_ID in
-		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+		<foreach item="item" index="index" collection="ids" open="(" separator="," close=")">
                  #{item}
 		</foreach>
 	</delete>
-	
-	<!-- fh313596790qq(青苔) -->
 </mapper>

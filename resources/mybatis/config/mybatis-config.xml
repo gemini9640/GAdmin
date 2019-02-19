@@ -49,6 +49,12 @@
 		<typeAlias type="com.gadmin.entity.join.GoodDetails" alias="GoodDetails"/>
 		<typeAlias type="com.gadmin.entity.join.CustomerWithLevel" alias="CustomerWithLevel"/>
 		<typeAlias type="com.gadmin.entity.join.GoodsIntoku" alias="GoodsIntoku"/>
+		<typeAlias type="com.gadmin.entity.join.GroupFriends" alias="GroupFriends"/>
+		<typeAlias type="com.gadmin.entity.join.GroupFriendsWithStatus" alias="GroupFriendsWithStatus"/>
+		<typeAlias type="com.gadmin.entity.join.ConnectedFriends" alias="ConnectedFriends"/>
+		<typeAlias type="com.gadmin.entity.join.QuickSearchFriends" alias="QuickSearchFriends"/>
+		
+		
 		
 		<typeAlias type="com.gadmin.entity.summery.OutkuOrder" alias="OutkuOrder"/>
 		<typeAlias type="com.gadmin.entity.summery.OutkuSalesReport" alias="OutkuSalesReport"/>

@@ -62,24 +62,24 @@
 	</select>
 	
 	<!-- 列表 -->
-	<select id="datalistPage" parameterType="page" resultType="pd">
+	<select id="datalistPage" parameterType="map" resultType="ERPRemarks">
 		select
 		<include refid="Field"></include>
 		from 
 		<include refid="tableName"></include>
 		where 1=1
-		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+		<if test="keywords!= null and keywords != ''"><!-- 关键词检索 -->
 			and
 				(
-					REMARKS LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					REMARKS LIKE CONCAT(CONCAT('%', #{keywords}),'%')
 				)
 		</if>
 		and
-			USERNAME = #{pd.USERNAME}
+			USERNAME = #{USERNAME}
 	</select>
 	
 	<!-- 列表(全部) -->
-	<select id="listAll" parameterType="pd" resultType="pd">
+	<select id="listAllByUsername" parameterType="String" resultType="ERPRemarks">
 		select
 		<include refid="Field"></include>
 		from 
@@ -89,12 +89,12 @@
 	</select>
 	
 	<!-- 批量删除 -->
-	<delete id="deleteAll" parameterType="String">
+	<delete id="deleteAllByIds" parameterType="String">
 		delete from
 		<include refid="tableName"></include>
 		where 
 			REMARKS_ID in
-		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+		<foreach item="item" index="index" collection="ids" open="(" separator="," close=")">
                  #{item}
 		</foreach>
 	</delete>

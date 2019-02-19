@@ -1,20 +1,24 @@
 package com.gadmin.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import com.gadmin.entity.ERPRemarks;
 
-
 public interface ERPRemarksMapper {
-    int save(ERPRemarks record);
-    
-    int deleteById(@Param("REMARKS_ID")String REMARKS_ID);
+	int save(ERPRemarks record);
 
-    int edit(ERPRemarks record);
+	int deleteById(@Param("REMARKS_ID") String REMARKS_ID);
 
-    ERPRemarks findById(@Param("REMARKS_ID")String REMARKS_ID);
+	int edit(ERPRemarks record);
 
-    int updateByPrimaryKeySelective(ERPRemarks record);
+	ERPRemarks findById(@Param("REMARKS_ID") String REMARKS_ID);
 
-    int updateByPrimaryKey(ERPRemarks record);
+	List<ERPRemarks> datalistPage(@Param("keywords") String keywords,
+			@Param("USERNAME") String USERNAME);
+
+	List<ERPRemarks> listAllByUsername(@Param("USERNAME") String USERNAME);
+
+	int deleteAllByIds(List ids);
 }

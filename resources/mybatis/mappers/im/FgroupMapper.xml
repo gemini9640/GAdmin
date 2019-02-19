@@ -34,7 +34,7 @@
 	</sql>
 	
 	<!-- 新增-->
-	<insert id="save" parameterType="pd">
+	<insert id="save" parameterType="IMFGroup">
 		insert into 
 	<include refid="tableName"></include>
 		(
@@ -45,7 +45,7 @@
 	</insert>
 	
 	<!-- 删除-->
-	<delete id="delete" parameterType="pd">
+	<delete id="deleteById" parameterType="String">
 		delete from
 		<include refid="tableName"></include>
 		where 
@@ -53,7 +53,7 @@
 	</delete>
 	
 	<!-- 修改 -->
-	<update id="edit" parameterType="pd">
+	<update id="edit" parameterType="IMFGroup">
 		update
 		<include refid="tableName"></include>
 		set 
@@ -64,7 +64,7 @@
 	</update>
 	
 	<!-- 通过ID获取数据 -->
-	<select id="findById" parameterType="pd" resultType="pd">
+	<select id="findById" parameterType="String" resultType="IMFGroup">
 		select 
 		<include refid="Field"></include>
 		from 
@@ -74,17 +74,17 @@
 	</select>
 	
 	<!-- 列表 -->
-	<select id="datalistPage" parameterType="page" resultType="pd">
+	<select id="datalistPage" parameterType="String" resultType="IMFGroup">
 		select
 		<include refid="Field"></include>
 		from 
 		<include refid="tableName"></include> f
 		where
-			f.USERNAME = #{pd.USERNAME}
+			f.USERNAME = #{USERNAME}
 	</select>
 	
 	<!-- 列表(全部) -->
-	<select id="listAll" parameterType="pd" resultType="pd">
+	<select id="listAllByUsername" parameterType="String" resultType="IMFGroup">
 		select
 		<include refid="Field"></include>
 		from 
@@ -94,7 +94,7 @@
 	</select>
 	
 	<!-- 批量删除 -->
-	<delete id="deleteAll" parameterType="String">
+	<delete id="deleteAllByIds" parameterType="String">
 		delete from
 		<include refid="tableName"></include>
 		where 
@@ -103,6 +103,4 @@
                  #{item}
 		</foreach>
 	</delete>
-	
-	<!-- fh313596790qq(青苔) -->
 </mapper>
