@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gadmin.generated.dao.ERPCustomerMapper">
+  <resultMap id="BaseResultMap" type="com.gadmin.generated.db.ERPCustomer">
+    <constructor>
+      <idArg column="CUSTOMER_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="AGE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PHONE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ADDRESS" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="QQ" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="WEIXIN" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CTIME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="MONEY" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="LEVEL" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="REMARKS1" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="REMARKS2" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="USERNAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    CUSTOMER_ID, NAME, AGE, PHONE, ADDRESS, QQ, WEIXIN, CTIME, MONEY, LEVEL, REMARKS1, 
+    REMARKS2, USERNAME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from erp_customer
+    where CUSTOMER_ID = #{CUSTOMER_ID,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from erp_customer
+    where CUSTOMER_ID = #{CUSTOMER_ID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gadmin.generated.db.ERPCustomer">
+    insert into erp_customer (CUSTOMER_ID, NAME, AGE, 
+      PHONE, ADDRESS, QQ, 
+      WEIXIN, CTIME, MONEY, 
+      LEVEL, REMARKS1, REMARKS2, 
+      USERNAME)
+    values (#{CUSTOMER_ID,jdbcType=VARCHAR}, #{NAME,jdbcType=VARCHAR}, #{AGE,jdbcType=VARCHAR}, 
+      #{PHONE,jdbcType=VARCHAR}, #{ADDRESS,jdbcType=VARCHAR}, #{QQ,jdbcType=VARCHAR}, 
+      #{WEIXIN,jdbcType=VARCHAR}, #{CTIME,jdbcType=VARCHAR}, #{MONEY,jdbcType=INTEGER}, 
+      #{LEVEL,jdbcType=VARCHAR}, #{REMARKS1,jdbcType=VARCHAR}, #{REMARKS2,jdbcType=VARCHAR}, 
+      #{USERNAME,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gadmin.generated.db.ERPCustomer">
+    insert into erp_customer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="CUSTOMER_ID != null">
+        CUSTOMER_ID,
+      </if>
+      <if test="NAME != null">
+        NAME,
+      </if>
+      <if test="AGE != null">
+        AGE,
+      </if>
+      <if test="PHONE != null">
+        PHONE,
+      </if>
+      <if test="ADDRESS != null">
+        ADDRESS,
+      </if>
+      <if test="QQ != null">
+        QQ,
+      </if>
+      <if test="WEIXIN != null">
+        WEIXIN,
+      </if>
+      <if test="CTIME != null">
+        CTIME,
+      </if>
+      <if test="MONEY != null">
+        MONEY,
+      </if>
+      <if test="LEVEL != null">
+        LEVEL,
+      </if>
+      <if test="REMARKS1 != null">
+        REMARKS1,
+      </if>
+      <if test="REMARKS2 != null">
+        REMARKS2,
+      </if>
+      <if test="USERNAME != null">
+        USERNAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="CUSTOMER_ID != null">
+        #{CUSTOMER_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="NAME != null">
+        #{NAME,jdbcType=VARCHAR},
+      </if>
+      <if test="AGE != null">
+        #{AGE,jdbcType=VARCHAR},
+      </if>
+      <if test="PHONE != null">
+        #{PHONE,jdbcType=VARCHAR},
+      </if>
+      <if test="ADDRESS != null">
+        #{ADDRESS,jdbcType=VARCHAR},
+      </if>
+      <if test="QQ != null">
+        #{QQ,jdbcType=VARCHAR},
+      </if>
+      <if test="WEIXIN != null">
+        #{WEIXIN,jdbcType=VARCHAR},
+      </if>
+      <if test="CTIME != null">
+        #{CTIME,jdbcType=VARCHAR},
+      </if>
+      <if test="MONEY != null">
+        #{MONEY,jdbcType=INTEGER},
+      </if>
+      <if test="LEVEL != null">
+        #{LEVEL,jdbcType=VARCHAR},
+      </if>
+      <if test="REMARKS1 != null">
+        #{REMARKS1,jdbcType=VARCHAR},
+      </if>
+      <if test="REMARKS2 != null">
+        #{REMARKS2,jdbcType=VARCHAR},
+      </if>
+      <if test="USERNAME != null">
+        #{USERNAME,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gadmin.generated.db.ERPCustomer">
+    update erp_customer
+    <set>
+      <if test="NAME != null">
+        NAME = #{NAME,jdbcType=VARCHAR},
+      </if>
+      <if test="AGE != null">
+        AGE = #{AGE,jdbcType=VARCHAR},
+      </if>
+      <if test="PHONE != null">
+        PHONE = #{PHONE,jdbcType=VARCHAR},
+      </if>
+      <if test="ADDRESS != null">
+        ADDRESS = #{ADDRESS,jdbcType=VARCHAR},
+      </if>
+      <if test="QQ != null">
+        QQ = #{QQ,jdbcType=VARCHAR},
+      </if>
+      <if test="WEIXIN != null">
+        WEIXIN = #{WEIXIN,jdbcType=VARCHAR},
+      </if>
+      <if test="CTIME != null">
+        CTIME = #{CTIME,jdbcType=VARCHAR},
+      </if>
+      <if test="MONEY != null">
+        MONEY = #{MONEY,jdbcType=INTEGER},
+      </if>
+      <if test="LEVEL != null">
+        LEVEL = #{LEVEL,jdbcType=VARCHAR},
+      </if>
+      <if test="REMARKS1 != null">
+        REMARKS1 = #{REMARKS1,jdbcType=VARCHAR},
+      </if>
+      <if test="REMARKS2 != null">
+        REMARKS2 = #{REMARKS2,jdbcType=VARCHAR},
+      </if>
+      <if test="USERNAME != null">
+        USERNAME = #{USERNAME,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CUSTOMER_ID = #{CUSTOMER_ID,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gadmin.generated.db.ERPCustomer">
+    update erp_customer
+    set NAME = #{NAME,jdbcType=VARCHAR},
+      AGE = #{AGE,jdbcType=VARCHAR},
+      PHONE = #{PHONE,jdbcType=VARCHAR},
+      ADDRESS = #{ADDRESS,jdbcType=VARCHAR},
+      QQ = #{QQ,jdbcType=VARCHAR},
+      WEIXIN = #{WEIXIN,jdbcType=VARCHAR},
+      CTIME = #{CTIME,jdbcType=VARCHAR},
+      MONEY = #{MONEY,jdbcType=INTEGER},
+      LEVEL = #{LEVEL,jdbcType=VARCHAR},
+      REMARKS1 = #{REMARKS1,jdbcType=VARCHAR},
+      REMARKS2 = #{REMARKS2,jdbcType=VARCHAR},
+      USERNAME = #{USERNAME,jdbcType=VARCHAR}
+    where CUSTOMER_ID = #{CUSTOMER_ID,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gadmin.generated.dao.IMFGroupMapper">
+  <resultMap id="BaseResultMap" type="com.gadmin.generated.db.IMFGroup">
+    <constructor>
+      <idArg column="FGROUP_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="USERNAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    FGROUP_ID, NAME, USERNAME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from im_fgroup
+    where FGROUP_ID = #{FGROUP_ID,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from im_fgroup
+    where FGROUP_ID = #{FGROUP_ID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gadmin.generated.db.IMFGroup">
+    insert into im_fgroup (FGROUP_ID, NAME, USERNAME
+      )
+    values (#{FGROUP_ID,jdbcType=VARCHAR}, #{NAME,jdbcType=VARCHAR}, #{USERNAME,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gadmin.generated.db.IMFGroup">
+    insert into im_fgroup
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="FGROUP_ID != null">
+        FGROUP_ID,
+      </if>
+      <if test="NAME != null">
+        NAME,
+      </if>
+      <if test="USERNAME != null">
+        USERNAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="FGROUP_ID != null">
+        #{FGROUP_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="NAME != null">
+        #{NAME,jdbcType=VARCHAR},
+      </if>
+      <if test="USERNAME != null">
+        #{USERNAME,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gadmin.generated.db.IMFGroup">
+    update im_fgroup
+    <set>
+      <if test="NAME != null">
+        NAME = #{NAME,jdbcType=VARCHAR},
+      </if>
+      <if test="USERNAME != null">
+        USERNAME = #{USERNAME,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where FGROUP_ID = #{FGROUP_ID,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gadmin.generated.db.IMFGroup">
+    update im_fgroup
+    set NAME = #{NAME,jdbcType=VARCHAR},
+      USERNAME = #{USERNAME,jdbcType=VARCHAR}
+    where FGROUP_ID = #{FGROUP_ID,jdbcType=VARCHAR}
+  </update>
+</mapper>

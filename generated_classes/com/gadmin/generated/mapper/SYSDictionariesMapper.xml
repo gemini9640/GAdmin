@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gadmin.generated.dao.SYSDictionariesMapper">
+  <resultMap id="BaseResultMap" type="com.gadmin.generated.db.SYSDictionaries">
+    <constructor>
+      <idArg column="DICTIONARIES_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="NAME_EN" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="BIANMA" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ORDER_BY" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="PARENT_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="BZ" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="TBSNAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    DICTIONARIES_ID, NAME, NAME_EN, BIANMA, ORDER_BY, PARENT_ID, BZ, TBSNAME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_dictionaries
+    where DICTIONARIES_ID = #{DICTIONARIES_ID,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_dictionaries
+    where DICTIONARIES_ID = #{DICTIONARIES_ID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gadmin.generated.db.SYSDictionaries">
+    insert into sys_dictionaries (DICTIONARIES_ID, NAME, NAME_EN, 
+      BIANMA, ORDER_BY, PARENT_ID, 
+      BZ, TBSNAME)
+    values (#{DICTIONARIES_ID,jdbcType=VARCHAR}, #{NAME,jdbcType=VARCHAR}, #{NAME_EN,jdbcType=VARCHAR}, 
+      #{BIANMA,jdbcType=VARCHAR}, #{ORDER_BY,jdbcType=INTEGER}, #{PARENT_ID,jdbcType=VARCHAR}, 
+      #{BZ,jdbcType=VARCHAR}, #{TBSNAME,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gadmin.generated.db.SYSDictionaries">
+    insert into sys_dictionaries
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="DICTIONARIES_ID != null">
+        DICTIONARIES_ID,
+      </if>
+      <if test="NAME != null">
+        NAME,
+      </if>
+      <if test="NAME_EN != null">
+        NAME_EN,
+      </if>
+      <if test="BIANMA != null">
+        BIANMA,
+      </if>
+      <if test="ORDER_BY != null">
+        ORDER_BY,
+      </if>
+      <if test="PARENT_ID != null">
+        PARENT_ID,
+      </if>
+      <if test="BZ != null">
+        BZ,
+      </if>
+      <if test="TBSNAME != null">
+        TBSNAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="DICTIONARIES_ID != null">
+        #{DICTIONARIES_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="NAME != null">
+        #{NAME,jdbcType=VARCHAR},
+      </if>
+      <if test="NAME_EN != null">
+        #{NAME_EN,jdbcType=VARCHAR},
+      </if>
+      <if test="BIANMA != null">
+        #{BIANMA,jdbcType=VARCHAR},
+      </if>
+      <if test="ORDER_BY != null">
+        #{ORDER_BY,jdbcType=INTEGER},
+      </if>
+      <if test="PARENT_ID != null">
+        #{PARENT_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="BZ != null">
+        #{BZ,jdbcType=VARCHAR},
+      </if>
+      <if test="TBSNAME != null">
+        #{TBSNAME,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gadmin.generated.db.SYSDictionaries">
+    update sys_dictionaries
+    <set>
+      <if test="NAME != null">
+        NAME = #{NAME,jdbcType=VARCHAR},
+      </if>
+      <if test="NAME_EN != null">
+        NAME_EN = #{NAME_EN,jdbcType=VARCHAR},
+      </if>
+      <if test="BIANMA != null">
+        BIANMA = #{BIANMA,jdbcType=VARCHAR},
+      </if>
+      <if test="ORDER_BY != null">
+        ORDER_BY = #{ORDER_BY,jdbcType=INTEGER},
+      </if>
+      <if test="PARENT_ID != null">
+        PARENT_ID = #{PARENT_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="BZ != null">
+        BZ = #{BZ,jdbcType=VARCHAR},
+      </if>
+      <if test="TBSNAME != null">
+        TBSNAME = #{TBSNAME,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DICTIONARIES_ID = #{DICTIONARIES_ID,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gadmin.generated.db.SYSDictionaries">
+    update sys_dictionaries
+    set NAME = #{NAME,jdbcType=VARCHAR},
+      NAME_EN = #{NAME_EN,jdbcType=VARCHAR},
+      BIANMA = #{BIANMA,jdbcType=VARCHAR},
+      ORDER_BY = #{ORDER_BY,jdbcType=INTEGER},
+      PARENT_ID = #{PARENT_ID,jdbcType=VARCHAR},
+      BZ = #{BZ,jdbcType=VARCHAR},
+      TBSNAME = #{TBSNAME,jdbcType=VARCHAR}
+    where DICTIONARIES_ID = #{DICTIONARIES_ID,jdbcType=VARCHAR}
+  </update>
+</mapper>

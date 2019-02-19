@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gadmin.generated.dao.ERPCustomerimgMapper">
+  <resultMap id="BaseResultMap" type="com.gadmin.generated.db.ERPCustomerimg">
+    <constructor>
+      <idArg column="CUSTOMERIMG_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CDESCRIPTION" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CTIME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CUSTOMER_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    CUSTOMERIMG_ID, CDESCRIPTION, CTIME, CUSTOMER_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from erp_customerimg
+    where CUSTOMERIMG_ID = #{CUSTOMERIMG_ID,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from erp_customerimg
+    where CUSTOMERIMG_ID = #{CUSTOMERIMG_ID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gadmin.generated.db.ERPCustomerimg">
+    insert into erp_customerimg (CUSTOMERIMG_ID, CDESCRIPTION, CTIME, 
+      CUSTOMER_ID)
+    values (#{CUSTOMERIMG_ID,jdbcType=VARCHAR}, #{CDESCRIPTION,jdbcType=VARCHAR}, #{CTIME,jdbcType=VARCHAR}, 
+      #{CUSTOMER_ID,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gadmin.generated.db.ERPCustomerimg">
+    insert into erp_customerimg
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="CUSTOMERIMG_ID != null">
+        CUSTOMERIMG_ID,
+      </if>
+      <if test="CDESCRIPTION != null">
+        CDESCRIPTION,
+      </if>
+      <if test="CTIME != null">
+        CTIME,
+      </if>
+      <if test="CUSTOMER_ID != null">
+        CUSTOMER_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="CUSTOMERIMG_ID != null">
+        #{CUSTOMERIMG_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="CDESCRIPTION != null">
+        #{CDESCRIPTION,jdbcType=VARCHAR},
+      </if>
+      <if test="CTIME != null">
+        #{CTIME,jdbcType=VARCHAR},
+      </if>
+      <if test="CUSTOMER_ID != null">
+        #{CUSTOMER_ID,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gadmin.generated.db.ERPCustomerimg">
+    update erp_customerimg
+    <set>
+      <if test="CDESCRIPTION != null">
+        CDESCRIPTION = #{CDESCRIPTION,jdbcType=VARCHAR},
+      </if>
+      <if test="CTIME != null">
+        CTIME = #{CTIME,jdbcType=VARCHAR},
+      </if>
+      <if test="CUSTOMER_ID != null">
+        CUSTOMER_ID = #{CUSTOMER_ID,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CUSTOMERIMG_ID = #{CUSTOMERIMG_ID,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gadmin.generated.db.ERPCustomerimg">
+    update erp_customerimg
+    set CDESCRIPTION = #{CDESCRIPTION,jdbcType=VARCHAR},
+      CTIME = #{CTIME,jdbcType=VARCHAR},
+      CUSTOMER_ID = #{CUSTOMER_ID,jdbcType=VARCHAR}
+    where CUSTOMERIMG_ID = #{CUSTOMERIMG_ID,jdbcType=VARCHAR}
+  </update>
+</mapper>

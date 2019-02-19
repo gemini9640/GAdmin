@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gadmin.generated.dao.IMFriendsMapper">
+  <resultMap id="BaseResultMap" type="com.gadmin.generated.db.IMFriends">
+    <constructor>
+      <idArg column="FRIENDS_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="USERNAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="FUSERNAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CTIME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ALLOW" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="FGROUP_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="DTIME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="BZ" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    FRIENDS_ID, USERNAME, FUSERNAME, CTIME, ALLOW, FGROUP_ID, DTIME, BZ
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from im_friends
+    where FRIENDS_ID = #{FRIENDS_ID,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from im_friends
+    where FRIENDS_ID = #{FRIENDS_ID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gadmin.generated.db.IMFriends">
+    insert into im_friends (FRIENDS_ID, USERNAME, FUSERNAME, 
+      CTIME, ALLOW, FGROUP_ID, 
+      DTIME, BZ)
+    values (#{FRIENDS_ID,jdbcType=VARCHAR}, #{USERNAME,jdbcType=VARCHAR}, #{FUSERNAME,jdbcType=VARCHAR}, 
+      #{CTIME,jdbcType=VARCHAR}, #{ALLOW,jdbcType=VARCHAR}, #{FGROUP_ID,jdbcType=VARCHAR}, 
+      #{DTIME,jdbcType=VARCHAR}, #{BZ,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gadmin.generated.db.IMFriends">
+    insert into im_friends
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="FRIENDS_ID != null">
+        FRIENDS_ID,
+      </if>
+      <if test="USERNAME != null">
+        USERNAME,
+      </if>
+      <if test="FUSERNAME != null">
+        FUSERNAME,
+      </if>
+      <if test="CTIME != null">
+        CTIME,
+      </if>
+      <if test="ALLOW != null">
+        ALLOW,
+      </if>
+      <if test="FGROUP_ID != null">
+        FGROUP_ID,
+      </if>
+      <if test="DTIME != null">
+        DTIME,
+      </if>
+      <if test="BZ != null">
+        BZ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="FRIENDS_ID != null">
+        #{FRIENDS_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="USERNAME != null">
+        #{USERNAME,jdbcType=VARCHAR},
+      </if>
+      <if test="FUSERNAME != null">
+        #{FUSERNAME,jdbcType=VARCHAR},
+      </if>
+      <if test="CTIME != null">
+        #{CTIME,jdbcType=VARCHAR},
+      </if>
+      <if test="ALLOW != null">
+        #{ALLOW,jdbcType=VARCHAR},
+      </if>
+      <if test="FGROUP_ID != null">
+        #{FGROUP_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="DTIME != null">
+        #{DTIME,jdbcType=VARCHAR},
+      </if>
+      <if test="BZ != null">
+        #{BZ,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gadmin.generated.db.IMFriends">
+    update im_friends
+    <set>
+      <if test="USERNAME != null">
+        USERNAME = #{USERNAME,jdbcType=VARCHAR},
+      </if>
+      <if test="FUSERNAME != null">
+        FUSERNAME = #{FUSERNAME,jdbcType=VARCHAR},
+      </if>
+      <if test="CTIME != null">
+        CTIME = #{CTIME,jdbcType=VARCHAR},
+      </if>
+      <if test="ALLOW != null">
+        ALLOW = #{ALLOW,jdbcType=VARCHAR},
+      </if>
+      <if test="FGROUP_ID != null">
+        FGROUP_ID = #{FGROUP_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="DTIME != null">
+        DTIME = #{DTIME,jdbcType=VARCHAR},
+      </if>
+      <if test="BZ != null">
+        BZ = #{BZ,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where FRIENDS_ID = #{FRIENDS_ID,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gadmin.generated.db.IMFriends">
+    update im_friends
+    set USERNAME = #{USERNAME,jdbcType=VARCHAR},
+      FUSERNAME = #{FUSERNAME,jdbcType=VARCHAR},
+      CTIME = #{CTIME,jdbcType=VARCHAR},
+      ALLOW = #{ALLOW,jdbcType=VARCHAR},
+      FGROUP_ID = #{FGROUP_ID,jdbcType=VARCHAR},
+      DTIME = #{DTIME,jdbcType=VARCHAR},
+      BZ = #{BZ,jdbcType=VARCHAR}
+    where FRIENDS_ID = #{FRIENDS_ID,jdbcType=VARCHAR}
+  </update>
+</mapper>

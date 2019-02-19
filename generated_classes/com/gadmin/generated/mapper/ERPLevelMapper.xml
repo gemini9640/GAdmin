@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gadmin.generated.dao.ERPLevelMapper">
+  <resultMap id="BaseResultMap" type="com.gadmin.generated.db.ERPLevel">
+    <constructor>
+      <idArg column="LEVEL_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="TITLE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="USERNAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    LEVEL_ID, TITLE, USERNAME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from erp_level
+    where LEVEL_ID = #{LEVEL_ID,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from erp_level
+    where LEVEL_ID = #{LEVEL_ID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gadmin.generated.db.ERPLevel">
+    insert into erp_level (LEVEL_ID, TITLE, USERNAME
+      )
+    values (#{LEVEL_ID,jdbcType=VARCHAR}, #{TITLE,jdbcType=VARCHAR}, #{USERNAME,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gadmin.generated.db.ERPLevel">
+    insert into erp_level
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="LEVEL_ID != null">
+        LEVEL_ID,
+      </if>
+      <if test="TITLE != null">
+        TITLE,
+      </if>
+      <if test="USERNAME != null">
+        USERNAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="LEVEL_ID != null">
+        #{LEVEL_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="TITLE != null">
+        #{TITLE,jdbcType=VARCHAR},
+      </if>
+      <if test="USERNAME != null">
+        #{USERNAME,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gadmin.generated.db.ERPLevel">
+    update erp_level
+    <set>
+      <if test="TITLE != null">
+        TITLE = #{TITLE,jdbcType=VARCHAR},
+      </if>
+      <if test="USERNAME != null">
+        USERNAME = #{USERNAME,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where LEVEL_ID = #{LEVEL_ID,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gadmin.generated.db.ERPLevel">
+    update erp_level
+    set TITLE = #{TITLE,jdbcType=VARCHAR},
+      USERNAME = #{USERNAME,jdbcType=VARCHAR}
+    where LEVEL_ID = #{LEVEL_ID,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gadmin.generated.dao.IMSysmsgMapper">
+  <resultMap id="BaseResultMap" type="com.gadmin.generated.db.IMSysmsg">
+    <constructor>
+      <idArg column="SYSMSG_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="USERNAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="FROMUSERNAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CTIME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="REMARK" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="TYPE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CONTENT" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ISDONE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="DTIME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="QGROUP_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="DREAD" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    SYSMSG_ID, USERNAME, FROMUSERNAME, CTIME, REMARK, TYPE, CONTENT, ISDONE, DTIME, QGROUP_ID, 
+    DREAD
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from im_sysmsg
+    where SYSMSG_ID = #{SYSMSG_ID,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from im_sysmsg
+    where SYSMSG_ID = #{SYSMSG_ID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gadmin.generated.db.IMSysmsg">
+    insert into im_sysmsg (SYSMSG_ID, USERNAME, FROMUSERNAME, 
+      CTIME, REMARK, TYPE, 
+      CONTENT, ISDONE, DTIME, 
+      QGROUP_ID, DREAD)
+    values (#{SYSMSG_ID,jdbcType=VARCHAR}, #{USERNAME,jdbcType=VARCHAR}, #{FROMUSERNAME,jdbcType=VARCHAR}, 
+      #{CTIME,jdbcType=VARCHAR}, #{REMARK,jdbcType=VARCHAR}, #{TYPE,jdbcType=VARCHAR}, 
+      #{CONTENT,jdbcType=VARCHAR}, #{ISDONE,jdbcType=VARCHAR}, #{DTIME,jdbcType=VARCHAR}, 
+      #{QGROUP_ID,jdbcType=VARCHAR}, #{DREAD,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gadmin.generated.db.IMSysmsg">
+    insert into im_sysmsg
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="SYSMSG_ID != null">
+        SYSMSG_ID,
+      </if>
+      <if test="USERNAME != null">
+        USERNAME,
+      </if>
+      <if test="FROMUSERNAME != null">
+        FROMUSERNAME,
+      </if>
+      <if test="CTIME != null">
+        CTIME,
+      </if>
+      <if test="REMARK != null">
+        REMARK,
+      </if>
+      <if test="TYPE != null">
+        TYPE,
+      </if>
+      <if test="CONTENT != null">
+        CONTENT,
+      </if>
+      <if test="ISDONE != null">
+        ISDONE,
+      </if>
+      <if test="DTIME != null">
+        DTIME,
+      </if>
+      <if test="QGROUP_ID != null">
+        QGROUP_ID,
+      </if>
+      <if test="DREAD != null">
+        DREAD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="SYSMSG_ID != null">
+        #{SYSMSG_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="USERNAME != null">
+        #{USERNAME,jdbcType=VARCHAR},
+      </if>
+      <if test="FROMUSERNAME != null">
+        #{FROMUSERNAME,jdbcType=VARCHAR},
+      </if>
+      <if test="CTIME != null">
+        #{CTIME,jdbcType=VARCHAR},
+      </if>
+      <if test="REMARK != null">
+        #{REMARK,jdbcType=VARCHAR},
+      </if>
+      <if test="TYPE != null">
+        #{TYPE,jdbcType=VARCHAR},
+      </if>
+      <if test="CONTENT != null">
+        #{CONTENT,jdbcType=VARCHAR},
+      </if>
+      <if test="ISDONE != null">
+        #{ISDONE,jdbcType=VARCHAR},
+      </if>
+      <if test="DTIME != null">
+        #{DTIME,jdbcType=VARCHAR},
+      </if>
+      <if test="QGROUP_ID != null">
+        #{QGROUP_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="DREAD != null">
+        #{DREAD,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gadmin.generated.db.IMSysmsg">
+    update im_sysmsg
+    <set>
+      <if test="USERNAME != null">
+        USERNAME = #{USERNAME,jdbcType=VARCHAR},
+      </if>
+      <if test="FROMUSERNAME != null">
+        FROMUSERNAME = #{FROMUSERNAME,jdbcType=VARCHAR},
+      </if>
+      <if test="CTIME != null">
+        CTIME = #{CTIME,jdbcType=VARCHAR},
+      </if>
+      <if test="REMARK != null">
+        REMARK = #{REMARK,jdbcType=VARCHAR},
+      </if>
+      <if test="TYPE != null">
+        TYPE = #{TYPE,jdbcType=VARCHAR},
+      </if>
+      <if test="CONTENT != null">
+        CONTENT = #{CONTENT,jdbcType=VARCHAR},
+      </if>
+      <if test="ISDONE != null">
+        ISDONE = #{ISDONE,jdbcType=VARCHAR},
+      </if>
+      <if test="DTIME != null">
+        DTIME = #{DTIME,jdbcType=VARCHAR},
+      </if>
+      <if test="QGROUP_ID != null">
+        QGROUP_ID = #{QGROUP_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="DREAD != null">
+        DREAD = #{DREAD,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SYSMSG_ID = #{SYSMSG_ID,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gadmin.generated.db.IMSysmsg">
+    update im_sysmsg
+    set USERNAME = #{USERNAME,jdbcType=VARCHAR},
+      FROMUSERNAME = #{FROMUSERNAME,jdbcType=VARCHAR},
+      CTIME = #{CTIME,jdbcType=VARCHAR},
+      REMARK = #{REMARK,jdbcType=VARCHAR},
+      TYPE = #{TYPE,jdbcType=VARCHAR},
+      CONTENT = #{CONTENT,jdbcType=VARCHAR},
+      ISDONE = #{ISDONE,jdbcType=VARCHAR},
+      DTIME = #{DTIME,jdbcType=VARCHAR},
+      QGROUP_ID = #{QGROUP_ID,jdbcType=VARCHAR},
+      DREAD = #{DREAD,jdbcType=VARCHAR}
+    where SYSMSG_ID = #{SYSMSG_ID,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gadmin.generated.dao.IMStateMapper">
+  <resultMap id="BaseResultMap" type="com.gadmin.generated.db.IMState">
+    <constructor>
+      <idArg column="IMSTATE_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="USERNAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ONLINE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="AUTOGRAPH" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="SIGN" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    IMSTATE_ID, USERNAME, ONLINE, AUTOGRAPH, SIGN
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from im_imstate
+    where IMSTATE_ID = #{IMSTATE_ID,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from im_imstate
+    where IMSTATE_ID = #{IMSTATE_ID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gadmin.generated.db.IMState">
+    insert into im_imstate (IMSTATE_ID, USERNAME, ONLINE, 
+      AUTOGRAPH, SIGN)
+    values (#{IMSTATE_ID,jdbcType=VARCHAR}, #{USERNAME,jdbcType=VARCHAR}, #{ONLINE,jdbcType=VARCHAR}, 
+      #{AUTOGRAPH,jdbcType=VARCHAR}, #{SIGN,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gadmin.generated.db.IMState">
+    insert into im_imstate
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="IMSTATE_ID != null">
+        IMSTATE_ID,
+      </if>
+      <if test="USERNAME != null">
+        USERNAME,
+      </if>
+      <if test="ONLINE != null">
+        ONLINE,
+      </if>
+      <if test="AUTOGRAPH != null">
+        AUTOGRAPH,
+      </if>
+      <if test="SIGN != null">
+        SIGN,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="IMSTATE_ID != null">
+        #{IMSTATE_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="USERNAME != null">
+        #{USERNAME,jdbcType=VARCHAR},
+      </if>
+      <if test="ONLINE != null">
+        #{ONLINE,jdbcType=VARCHAR},
+      </if>
+      <if test="AUTOGRAPH != null">
+        #{AUTOGRAPH,jdbcType=VARCHAR},
+      </if>
+      <if test="SIGN != null">
+        #{SIGN,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gadmin.generated.db.IMState">
+    update im_imstate
+    <set>
+      <if test="USERNAME != null">
+        USERNAME = #{USERNAME,jdbcType=VARCHAR},
+      </if>
+      <if test="ONLINE != null">
+        ONLINE = #{ONLINE,jdbcType=VARCHAR},
+      </if>
+      <if test="AUTOGRAPH != null">
+        AUTOGRAPH = #{AUTOGRAPH,jdbcType=VARCHAR},
+      </if>
+      <if test="SIGN != null">
+        SIGN = #{SIGN,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where IMSTATE_ID = #{IMSTATE_ID,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gadmin.generated.db.IMState">
+    update im_imstate
+    set USERNAME = #{USERNAME,jdbcType=VARCHAR},
+      ONLINE = #{ONLINE,jdbcType=VARCHAR},
+      AUTOGRAPH = #{AUTOGRAPH,jdbcType=VARCHAR},
+      SIGN = #{SIGN,jdbcType=VARCHAR}
+    where IMSTATE_ID = #{IMSTATE_ID,jdbcType=VARCHAR}
+  </update>
+</mapper>

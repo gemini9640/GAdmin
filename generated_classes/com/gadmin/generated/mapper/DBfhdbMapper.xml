@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gadmin.generated.dao.DBfhdbMapper">
+  <resultMap id="BaseResultMap" type="com.gadmin.generated.db.DBfhdb">
+    <constructor>
+      <idArg column="FHDB_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="USERNAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="BACKUP_TIME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="TABLENAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="SQLPATH" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="TYPE" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="DBSIZE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="BZ" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    FHDB_ID, USERNAME, BACKUP_TIME, TABLENAME, SQLPATH, TYPE, DBSIZE, BZ
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from db_fhdb
+    where FHDB_ID = #{FHDB_ID,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from db_fhdb
+    where FHDB_ID = #{FHDB_ID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gadmin.generated.db.DBfhdb">
+    insert into db_fhdb (FHDB_ID, USERNAME, BACKUP_TIME, 
+      TABLENAME, SQLPATH, TYPE, 
+      DBSIZE, BZ)
+    values (#{FHDB_ID,jdbcType=VARCHAR}, #{USERNAME,jdbcType=VARCHAR}, #{BACKUP_TIME,jdbcType=VARCHAR}, 
+      #{TABLENAME,jdbcType=VARCHAR}, #{SQLPATH,jdbcType=VARCHAR}, #{TYPE,jdbcType=INTEGER}, 
+      #{DBSIZE,jdbcType=VARCHAR}, #{BZ,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gadmin.generated.db.DBfhdb">
+    insert into db_fhdb
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="FHDB_ID != null">
+        FHDB_ID,
+      </if>
+      <if test="USERNAME != null">
+        USERNAME,
+      </if>
+      <if test="BACKUP_TIME != null">
+        BACKUP_TIME,
+      </if>
+      <if test="TABLENAME != null">
+        TABLENAME,
+      </if>
+      <if test="SQLPATH != null">
+        SQLPATH,
+      </if>
+      <if test="TYPE != null">
+        TYPE,
+      </if>
+      <if test="DBSIZE != null">
+        DBSIZE,
+      </if>
+      <if test="BZ != null">
+        BZ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="FHDB_ID != null">
+        #{FHDB_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="USERNAME != null">
+        #{USERNAME,jdbcType=VARCHAR},
+      </if>
+      <if test="BACKUP_TIME != null">
+        #{BACKUP_TIME,jdbcType=VARCHAR},
+      </if>
+      <if test="TABLENAME != null">
+        #{TABLENAME,jdbcType=VARCHAR},
+      </if>
+      <if test="SQLPATH != null">
+        #{SQLPATH,jdbcType=VARCHAR},
+      </if>
+      <if test="TYPE != null">
+        #{TYPE,jdbcType=INTEGER},
+      </if>
+      <if test="DBSIZE != null">
+        #{DBSIZE,jdbcType=VARCHAR},
+      </if>
+      <if test="BZ != null">
+        #{BZ,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gadmin.generated.db.DBfhdb">
+    update db_fhdb
+    <set>
+      <if test="USERNAME != null">
+        USERNAME = #{USERNAME,jdbcType=VARCHAR},
+      </if>
+      <if test="BACKUP_TIME != null">
+        BACKUP_TIME = #{BACKUP_TIME,jdbcType=VARCHAR},
+      </if>
+      <if test="TABLENAME != null">
+        TABLENAME = #{TABLENAME,jdbcType=VARCHAR},
+      </if>
+      <if test="SQLPATH != null">
+        SQLPATH = #{SQLPATH,jdbcType=VARCHAR},
+      </if>
+      <if test="TYPE != null">
+        TYPE = #{TYPE,jdbcType=INTEGER},
+      </if>
+      <if test="DBSIZE != null">
+        DBSIZE = #{DBSIZE,jdbcType=VARCHAR},
+      </if>
+      <if test="BZ != null">
+        BZ = #{BZ,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where FHDB_ID = #{FHDB_ID,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gadmin.generated.db.DBfhdb">
+    update db_fhdb
+    set USERNAME = #{USERNAME,jdbcType=VARCHAR},
+      BACKUP_TIME = #{BACKUP_TIME,jdbcType=VARCHAR},
+      TABLENAME = #{TABLENAME,jdbcType=VARCHAR},
+      SQLPATH = #{SQLPATH,jdbcType=VARCHAR},
+      TYPE = #{TYPE,jdbcType=INTEGER},
+      DBSIZE = #{DBSIZE,jdbcType=VARCHAR},
+      BZ = #{BZ,jdbcType=VARCHAR}
+    where FHDB_ID = #{FHDB_ID,jdbcType=VARCHAR}
+  </update>
+</mapper>

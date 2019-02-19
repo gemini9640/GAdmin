@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gadmin.generated.dao.CPSPTypeMapper">
+  <resultMap id="BaseResultMap" type="com.gadmin.generated.db.CPSPType">
+    <constructor>
+      <idArg column="SPTYPE_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="BZ" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="USERNAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    SPTYPE_ID, NAME, BZ, USERNAME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cp_sptype
+    where SPTYPE_ID = #{SPTYPE_ID,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from cp_sptype
+    where SPTYPE_ID = #{SPTYPE_ID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gadmin.generated.db.CPSPType">
+    insert into cp_sptype (SPTYPE_ID, NAME, BZ, 
+      USERNAME)
+    values (#{SPTYPE_ID,jdbcType=VARCHAR}, #{NAME,jdbcType=VARCHAR}, #{BZ,jdbcType=VARCHAR}, 
+      #{USERNAME,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gadmin.generated.db.CPSPType">
+    insert into cp_sptype
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="SPTYPE_ID != null">
+        SPTYPE_ID,
+      </if>
+      <if test="NAME != null">
+        NAME,
+      </if>
+      <if test="BZ != null">
+        BZ,
+      </if>
+      <if test="USERNAME != null">
+        USERNAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="SPTYPE_ID != null">
+        #{SPTYPE_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="NAME != null">
+        #{NAME,jdbcType=VARCHAR},
+      </if>
+      <if test="BZ != null">
+        #{BZ,jdbcType=VARCHAR},
+      </if>
+      <if test="USERNAME != null">
+        #{USERNAME,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gadmin.generated.db.CPSPType">
+    update cp_sptype
+    <set>
+      <if test="NAME != null">
+        NAME = #{NAME,jdbcType=VARCHAR},
+      </if>
+      <if test="BZ != null">
+        BZ = #{BZ,jdbcType=VARCHAR},
+      </if>
+      <if test="USERNAME != null">
+        USERNAME = #{USERNAME,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SPTYPE_ID = #{SPTYPE_ID,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gadmin.generated.db.CPSPType">
+    update cp_sptype
+    set NAME = #{NAME,jdbcType=VARCHAR},
+      BZ = #{BZ,jdbcType=VARCHAR},
+      USERNAME = #{USERNAME,jdbcType=VARCHAR}
+    where SPTYPE_ID = #{SPTYPE_ID,jdbcType=VARCHAR}
+  </update>
+</mapper>

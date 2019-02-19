@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gadmin.generated.dao.SYSUserphotoMapper">
+  <resultMap id="BaseResultMap" type="com.gadmin.generated.db.SYSUserphoto">
+    <constructor>
+      <idArg column="USERPHOTO_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="USERNAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PHOTO0" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PHOTO1" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PHOTO2" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PHOTO3" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    USERPHOTO_ID, USERNAME, PHOTO0, PHOTO1, PHOTO2, PHOTO3
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_userphoto
+    where USERPHOTO_ID = #{USERPHOTO_ID,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_userphoto
+    where USERPHOTO_ID = #{USERPHOTO_ID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gadmin.generated.db.SYSUserphoto">
+    insert into sys_userphoto (USERPHOTO_ID, USERNAME, PHOTO0, 
+      PHOTO1, PHOTO2, PHOTO3
+      )
+    values (#{USERPHOTO_ID,jdbcType=VARCHAR}, #{USERNAME,jdbcType=VARCHAR}, #{PHOTO0,jdbcType=VARCHAR}, 
+      #{PHOTO1,jdbcType=VARCHAR}, #{PHOTO2,jdbcType=VARCHAR}, #{PHOTO3,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gadmin.generated.db.SYSUserphoto">
+    insert into sys_userphoto
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="USERPHOTO_ID != null">
+        USERPHOTO_ID,
+      </if>
+      <if test="USERNAME != null">
+        USERNAME,
+      </if>
+      <if test="PHOTO0 != null">
+        PHOTO0,
+      </if>
+      <if test="PHOTO1 != null">
+        PHOTO1,
+      </if>
+      <if test="PHOTO2 != null">
+        PHOTO2,
+      </if>
+      <if test="PHOTO3 != null">
+        PHOTO3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="USERPHOTO_ID != null">
+        #{USERPHOTO_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="USERNAME != null">
+        #{USERNAME,jdbcType=VARCHAR},
+      </if>
+      <if test="PHOTO0 != null">
+        #{PHOTO0,jdbcType=VARCHAR},
+      </if>
+      <if test="PHOTO1 != null">
+        #{PHOTO1,jdbcType=VARCHAR},
+      </if>
+      <if test="PHOTO2 != null">
+        #{PHOTO2,jdbcType=VARCHAR},
+      </if>
+      <if test="PHOTO3 != null">
+        #{PHOTO3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gadmin.generated.db.SYSUserphoto">
+    update sys_userphoto
+    <set>
+      <if test="USERNAME != null">
+        USERNAME = #{USERNAME,jdbcType=VARCHAR},
+      </if>
+      <if test="PHOTO0 != null">
+        PHOTO0 = #{PHOTO0,jdbcType=VARCHAR},
+      </if>
+      <if test="PHOTO1 != null">
+        PHOTO1 = #{PHOTO1,jdbcType=VARCHAR},
+      </if>
+      <if test="PHOTO2 != null">
+        PHOTO2 = #{PHOTO2,jdbcType=VARCHAR},
+      </if>
+      <if test="PHOTO3 != null">
+        PHOTO3 = #{PHOTO3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where USERPHOTO_ID = #{USERPHOTO_ID,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gadmin.generated.db.SYSUserphoto">
+    update sys_userphoto
+    set USERNAME = #{USERNAME,jdbcType=VARCHAR},
+      PHOTO0 = #{PHOTO0,jdbcType=VARCHAR},
+      PHOTO1 = #{PHOTO1,jdbcType=VARCHAR},
+      PHOTO2 = #{PHOTO2,jdbcType=VARCHAR},
+      PHOTO3 = #{PHOTO3,jdbcType=VARCHAR}
+    where USERPHOTO_ID = #{USERPHOTO_ID,jdbcType=VARCHAR}
+  </update>
+</mapper>
