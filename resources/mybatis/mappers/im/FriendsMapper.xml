@@ -2,21 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gadmin.dao.IMFriendsMapper">
 	<resultMap type="GroupFriends" id="GroupFriendsResultMap">
-		<association property="imFriends" javaType="IMFriends">
-			<id column="f.FRIENDS_ID" property="FRIENDS_ID"/>
-			<result column="f.USERNAME" property="USERNAME"/>
-			<result column="f.FUSERNAME" property="FUSERNAME"/>
-			<result column="f.CTIME" property="CTIME"/>
-			<result column="f.ALLOW" property="ALLOW"/>
-			<result column="f.FGROUP_ID" property="FGROUP_ID"/>
-			<result column="f.DTIME" property="DTIME"/>
-			<result column="f.BZ" property="BZ"/>
-		</association>
 		<result column="u.NAME" property="u_NAME"/>
 		<result column="g.NAME" property="g_NAME"/>
 		<result column="p.PHOTO2" property="p_PHOTO2"/>
-	</resultMap>	
-	<resultMap type="GroupFriendsWithStatus" id="GroupFriendsWithStatusResultMap">
 		<association property="imFriends" javaType="IMFriends">
 			<id column="f.FRIENDS_ID" property="FRIENDS_ID"/>
 			<result column="f.USERNAME" property="USERNAME"/>
@@ -27,11 +15,23 @@
 			<result column="f.DTIME" property="DTIME"/>
 			<result column="f.BZ" property="BZ"/>
 		</association>
+	</resultMap>	
+	<resultMap type="GroupFriendsWithStatus" id="GroupFriendsWithStatusResultMap">
 		<result column="u.NAME" property="u_NAME"/>
 		<result column="g.NAME" property="g_NAME"/>
 		<result column="p.PHOTO2" property="p_PHOTO2"/>
 		<result column="s.ONLINE" property="s_ONLINE"/>
 		<result column="s.AUTOGRAPH" property="s_AUTOGRAPH"/>
+		<association property="imFriends" javaType="IMFriends">
+			<id column="f.FRIENDS_ID" property="FRIENDS_ID"/>
+			<result column="f.USERNAME" property="USERNAME"/>
+			<result column="f.FUSERNAME" property="FUSERNAME"/>
+			<result column="f.CTIME" property="CTIME"/>
+			<result column="f.ALLOW" property="ALLOW"/>
+			<result column="f.FGROUP_ID" property="FGROUP_ID"/>
+			<result column="f.DTIME" property="DTIME"/>
+			<result column="f.BZ" property="BZ"/>
+		</association>
 	</resultMap>
 	<resultMap type="ConnectedFriends" id="ConnectedFriendsResultMap">
 		<result column="f.USERNAME" property="f_USERNAME"/>

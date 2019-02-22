@@ -241,7 +241,7 @@
 	</select>
 	
 	<!-- 出库临时列表(全部) -->
-	<select id=listTempByOrderNumber parameterType="String" resultType="ERPOutku_temp">
+	<select id="listTempByOrderNumber" parameterType="String" resultType="ERPOutku_temp">
 		select
 		<include refid="Field"></include>
 		from 
