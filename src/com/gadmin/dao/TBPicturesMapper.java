@@ -1,17 +1,30 @@
 package com.gadmin.dao;
 
-import com.gadmin.generated.db.TBPictures;
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.gadmin.entity.TBPictures;
+
 
 public interface TBPicturesMapper {
-    int deleteByPrimaryKey(String picturesId);
+	List<TBPictures> datalistPage(@Param("KEYW")String KEYW, @Param("MASTER_ID")String MASTER_ID);
+    
+	List<TBPictures> listAll(@Param("GOODS_ID")String GOODS_ID);
+	
+	int deleteById(@Param("PICTURES_ID")String PICTURES_ID);
 
-    int insert(TBPictures record);
+    int save(TBPictures record);
+    
+    TBPictures findById(@Param("PICTURES_ID")String PICTURES_ID);
 
-    int insertSelective(TBPictures record);
+    int edit(TBPictures record);
 
-    TBPictures selectByPrimaryKey(String picturesId);
-
-    int updateByPrimaryKeySelective(TBPictures record);
-
-    int updateByPrimaryKey(TBPictures record);
+    int deleteAllByIds(List ids);
+    
+    List<TBPictures> getAllById(List ids);
+    
+    int deleteImgById(@Param("PICTURES_ID")String PICTURES_ID);
+    
+    Integer findCount(@Param("MASTER_ID")String MASTER_ID);
 }

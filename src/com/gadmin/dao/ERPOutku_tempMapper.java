@@ -1,6 +1,7 @@
 package com.gadmin.dao;
 
-import com.gadmin.generated.db.ERPOutku_temp;
+import com.gadmin.entity.ERPOutku_temp;
+
 
 public interface ERPOutku_tempMapper {
     int deleteByPrimaryKey(String outkuId);

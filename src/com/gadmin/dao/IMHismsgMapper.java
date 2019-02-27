@@ -1,17 +1,26 @@
 package com.gadmin.dao;
 
-import com.gadmin.generated.db.IMHismsg;
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.gadmin.entity.IMHismsg;
+
 
 public interface IMHismsgMapper {
-    int deleteByPrimaryKey(String hismsgId);
+    int deleteById(@Param("HISMSG_ID")String HISMSG_ID);
 
-    int insert(IMHismsg record);
+    int save(IMHismsg record);
 
-    int insertSelective(IMHismsg record);
+    IMHismsg findById(@Param("HISMSG_ID")String HISMSG_ID);
 
-    IMHismsg selectByPrimaryKey(String hismsgId);
+    int editByUsername(@Param("USERNAME")String USERNAME);
 
-    int updateByPrimaryKeySelective(IMHismsg record);
-
-    int updateByPrimaryKey(IMHismsg record);
+    List<IMHismsg> datalistPage(@Param("USERNAME")String  USERNAME, @Param("TOID")String  TOID);
+    
+    List<IMHismsg> listAllnoread(@Param("USERNAME")String USERNAME);
+    
+    List<IMHismsg> listAll();
+    
+    int deleteAllByIds(List ids);
 }

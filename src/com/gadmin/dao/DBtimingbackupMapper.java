@@ -1,6 +1,7 @@
 package com.gadmin.dao;
 
-import com.gadmin.generated.db.DBtimingbackup;
+import com.gadmin.entity.DBtimingbackup;
+
 
 public interface DBtimingbackupMapper {
     int deleteByPrimaryKey(String timingbackupId);

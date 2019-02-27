@@ -40,7 +40,7 @@
 	</sql>
 	
 	<!-- 新增-->
-	<insert id="save" parameterType="pd">
+	<insert id="save" parameterType="IMQGroup">
 		insert into 
 	<include refid="tableName"></include>
 		(
@@ -51,7 +51,7 @@
 	</insert>
 	
 	<!-- 删除-->
-	<delete id="delete" parameterType="pd">
+	<delete id="deleteById" parameterType="String">
 		delete from
 		<include refid="tableName"></include>
 		where 
@@ -59,7 +59,7 @@
 	</delete>
 	
 	<!-- 删除图片 -->
-	<update id="delTp" parameterType="pd">
+	<update id=delImgById parameterType="String">
 		update
 		<include refid="tableName"></include>
 		set 
@@ -69,7 +69,7 @@
 	</update>
 	
 	<!-- 修改 -->
-	<update id="edit" parameterType="pd">
+	<update id="edit" parameterType="IMQGroup">
 		update
 		<include refid="tableName"></include>
 		set 
@@ -80,7 +80,7 @@
 	</update>
 	
 	<!-- 通过ID获取数据 -->
-	<select id="findById" parameterType="pd" resultType="pd">
+	<select id="findById" parameterType="String" resultType="IMQGroup">
 		select 
 		<include refid="Field"></include>
 		from 
@@ -90,25 +90,25 @@
 	</select>
 	
 	<!-- 列表 -->
-	<select id="datalistPage" parameterType="page" resultType="pd">
+	<select id="datalistPage" parameterType="map" resultType="IMQGroup">
 		select
 		<include refid="Field"></include>
 		from 
 		<include refid="tableName"></include> f
 		where 1=1
-		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+		<if test="keywords!= null and keywords != ''"><!-- 关键词检索 -->
 			and
 				(
-					NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					NAME LIKE CONCAT(CONCAT('%', #{keywords}),'%')
 				)
 		</if>
-		<if test="pd.item!=null and pd.item!=''"><!-- 根据群组ID过滤 -->
-			and QGROUP_ID in ${pd.item}
+		<if test="item!=null and item!=''"><!-- 根据群组ID过滤 -->
+			and QGROUP_ID in ${item}
 		</if>
 	</select>
 	
 	<!-- 我在的全部群列表 -->
-	<select id="mylistAll" parameterType="pd" resultType="pd">
+	<select id="mylistAll" parameterType="String" resultType="IMQGroup">
 		select
 		<include refid="Field"></include>
 		from 
@@ -120,7 +120,7 @@
 	</select>
 	
 	<!-- 群检索列表 -->
-	<select id="searchListAll" parameterType="pd" resultType="pd">
+	<select id="searchListAll" parameterType="String" resultType="IMQGroup">
 		select
 		<include refid="Field"></include>
 		from 
@@ -135,12 +135,10 @@
 	</select>
 	
 	<!-- 列表(全部) -->
-	<select id="listAll" parameterType="pd" resultType="pd">
+	<select id="listAll" resultType="IMQGroup">
 		select
 		<include refid="Field"></include>
 		from 
 		<include refid="tableName"></include> f
 	</select>
-	
-	<!-- fh313596790qq(青苔) -->
 </mapper>

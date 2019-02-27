@@ -1,17 +1,28 @@
 package com.gadmin.dao;
 
-import com.gadmin.generated.db.IMSysmsg;
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.gadmin.entity.IMSysmsg;
+import com.gadmin.entity.join.UserMsg;
 
 public interface IMSysmsgMapper {
-    int deleteByPrimaryKey(String sysmsgId);
+	int deleteById(@Param("SYSMSG_ID") String SYSMSG_ID);
 
-    int insert(IMSysmsg record);
+	int save(IMSysmsg record);
 
-    int insertSelective(IMSysmsg record);
+	int edit(IMSysmsg record);
 
-    IMSysmsg selectByPrimaryKey(String sysmsgId);
+	int read(@Param("USERNAME") String USERNAME);
 
-    int updateByPrimaryKeySelective(IMSysmsg record);
+	IMSysmsg findById(@Param("SYSMSG_ID") String SYSMSG_ID);
 
-    int updateByPrimaryKey(IMSysmsg record);
+	Integer getMsgCount(@Param("USERNAME") String USERNAME);
+
+	List<IMSysmsg> datalistPage(@Param("USERNAME") String USERNAME);
+
+	List<UserMsg> listAll(@Param("USERNAME") String USERNAME);
+
+	int deleteAllByIds(List ids);
 }

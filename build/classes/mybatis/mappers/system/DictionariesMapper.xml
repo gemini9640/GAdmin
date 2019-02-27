@@ -38,7 +38,7 @@
 	</sql>
 	
 	<!-- 新增-->
-	<insert id="save" parameterType="pd">
+	<insert id="save" parameterType="SYSDictionaries">
 		insert into 
 	<include refid="tableName"></include>
 		(
@@ -49,7 +49,7 @@
 	</insert>
 	
 	<!-- 删除-->
-	<delete id="delete" parameterType="pd">
+	<delete id="deleteById" parameterType="String">
 		delete from
 		<include refid="tableName"></include>
 		where 
@@ -57,7 +57,7 @@
 	</delete>
 	
 	<!-- 修改 -->
-	<update id="edit" parameterType="pd">
+	<update id="edit" parameterType="SYSDictionaries">
 		update
 		<include refid="tableName"></include>
 		set 
@@ -72,7 +72,7 @@
 	</update>
 	
 	<!-- 通过ID获取数据 -->
-	<select id="findById" parameterType="pd" resultType="pd">
+	<select id="findById" parameterType="String" resultType="SYSDictionaries">
 		select 
 		<include refid="Field"></include>
 		from 
@@ -82,7 +82,7 @@
 	</select>
 	
 	<!-- 通过编码获取数据 -->
-	<select id="findByBianma" parameterType="pd" resultType="pd">
+	<select id="findByBianma" parameterType="String" resultType="SYSDictionaries">
 		select 
 		<include refid="Field"></include>
 		from 
@@ -92,24 +92,24 @@
 	</select>
 	
 	<!-- 列表 -->
-	<select id="datalistPage" parameterType="page" resultType="pd">
+	<select id="datalistPage" parameterType="map" resultType="SYSDictionaries">
 		select
 		<include refid="Field"></include>
 		from 
 		<include refid="tableName"></include>
 		where
 			1=1
-		<if test="pd.DICTIONARIES_ID!= null and pd.DICTIONARIES_ID != ''"><!-- 检索 -->
-		and PARENT_ID = #{pd.DICTIONARIES_ID}
+		<if test="DICTIONARIES_ID!= null and DICTIONARIES_ID != ''"><!-- 检索 -->
+		and PARENT_ID = #{DICTIONARIES_ID}
 		</if>
-		<if test="pd.keywords != null and pd.keywords != ''"><!-- 关键词检索 -->
+		<if test="keywords != null and keywords != ''"><!-- 关键词检索 -->
 			and
 				(
-				 NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				 NAME LIKE CONCAT(CONCAT('%', #{keywords}),'%')
 				 or 
-				 NAME_EN LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				 NAME_EN LIKE CONCAT(CONCAT('%', #{keywords}),'%') 
 				 or
-				 BIANMA LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				 BIANMA LIKE CONCAT(CONCAT('%', #{keywords}),'%')
 				)
 		</if>
 		order by ORDER_BY
@@ -126,7 +126,7 @@
 	</select>
 	
 	<!-- 排查表检查是否被占用 -->
-	<select id="findFromTbs" parameterType="pd" resultType="pd">
+	<select id="findFromTbs" parameterType="map" resultType="Integer">
 		select
 			count(*) zs
 		from 
@@ -134,6 +134,4 @@
 		where
 			BIANMA = #{BIANMA}
 	</select>
-	
-	<!-- fh313596790qq(青苔) -->
 </mapper>

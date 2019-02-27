@@ -1,6 +1,7 @@
 package com.gadmin.dao;
 
-import com.gadmin.generated.db.DBfhdb;
+import com.gadmin.entity.DBfhdb;
+
 
 public interface DBfhdbMapper {
     int deleteByPrimaryKey(String fhdbId);

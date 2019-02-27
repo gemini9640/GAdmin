@@ -4,7 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.gadmin.generated.db.CPSPUnit;
+import com.gadmin.entity.CPSPUnit;
+
 
 public interface CPSPUnitMapper {
     int save(CPSPUnit record);

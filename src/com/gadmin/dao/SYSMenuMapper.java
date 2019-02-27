@@ -1,17 +1,24 @@
 package com.gadmin.dao;
 
-import com.gadmin.generated.db.SYSMenu;
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.gadmin.entity.SYSMenu;
+
 
 public interface SYSMenuMapper {
-    int deleteByPrimaryKey(Integer menuId);
+	List<SYSMenu> listSubMenuByParentId(@Param("parentId")String parentId);
+	
+	SYSMenu getMenuById(@Param("MENU_ID")Integer MENU_ID);
 
-    int insert(SYSMenu record);
+    int insertMenu(SYSMenu record);
+    
+    Integer findMaxId();
+	
+    int deleteMenuById(@Param("MENU_ID")Integer MENU_ID);
 
-    int insertSelective(SYSMenu record);
+    int updateMenu(SYSMenu record);
 
-    SYSMenu selectByPrimaryKey(Integer menuId);
-
-    int updateByPrimaryKeySelective(SYSMenu record);
-
-    int updateByPrimaryKey(SYSMenu record);
+    int editicon(SYSMenu record);
 }

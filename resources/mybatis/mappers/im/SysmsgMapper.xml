@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gadmin.dao.IMSysmsgMapper">
-	
+	<resultMap type="UserMsg" id="UserMsgResultMap">
+		<association property="imSysmsg" javaType="IMSysmsg">
+			<id column="f.SYSMSG_ID" property="SYSMSG_ID"/>
+			<result column="f.USERNAME" property="USERNAME"/>
+			<result column="f.FROMUSERNAME" property="FROMUSERNAME"/>
+			<result column="f.CTIME" property="CTIME"/>
+			<result column="f.REMARK" property="REMARK"/>
+			<result column="f.TYPE" property="TYPE"/>
+			<result column="f.CONTENT" property="CONTENT"/>
+			<result column="f.ISDONE" property="ISDONE"/>
+			<result column="f.QGROUP_ID" property="QGROUP_ID"/>
+			<result column="f.DREAD" property="DREAD"/>
+			<result column="f.DTIME" property="DTIME"/>
+		</association>
+		<result column="s.AUTOGRAPH" property="s_AUTOGRAPH"/>
+		<result column="u.NAME" property="u_NAME"/>
+		<result column="p.PHOTO2" property="p_PHOTO2"/>
+	</resultMap>
 	<!--表名 -->
 	<sql id="tableName">
 		IM_SYSMSG
@@ -73,7 +90,7 @@
 	</sql>
 	
 	<!-- 新增-->
-	<insert id="save" parameterType="pd">
+	<insert id="save" parameterType="IMSysmsg">
 		insert into 
 	<include refid="tableName"></include>
 		(
@@ -84,7 +101,7 @@
 	</insert>
 	
 	<!-- 删除-->
-	<delete id="delete" parameterType="pd">
+	<delete id="deleteById" parameterType="String">
 		delete from
 		<include refid="tableName"></include>
 		where 
@@ -92,7 +109,7 @@
 	</delete>
 	
 	<!-- 修改 -->
-	<update id="edit" parameterType="pd">
+	<update id="edit" parameterType="IMSysmsg">
 		update
 		<include refid="tableName"></include>
 		set 
@@ -114,7 +131,7 @@
 	</update>
 	
 	<!-- 通过ID获取数据 -->
-	<select id="findById" parameterType="pd" resultType="pd">
+	<select id="findById" parameterType="String" resultType="IMSysmsg">
 		select 
 		<include refid="Field"></include>
 		from 
@@ -124,7 +141,7 @@
 	</select>
 	
 	<!-- 获取未读总数 -->
-	<select id="getMsgCount" parameterType="pd" resultType="pd">
+	<select id="getMsgCount" parameterType="String" resultType="Integer">
 		select 
 			count(SYSMSG_ID) msgCount
 		from 
@@ -136,19 +153,19 @@
 	</select>
 	
 	<!-- 列表 -->
-	<select id="datalistPage" parameterType="page" resultType="pd">
+	<select id="datalistPage" parameterType="map" resultType="IMSysmsg">
 		select
 		<include refid="Field"></include>
 		from 
 		<include refid="tableName"></include> f
 		where
-			f.USERNAME = #{pd.USERNAME}
+			f.USERNAME = #{USERNAME}
 		and
 			ISDONE = 'yes'
 	</select>
 	
 	<!-- 列表(全部) -->
-	<select id="listAll" parameterType="pd" resultType="pd">
+	<select id="listAll" parameterType="map" resultType="UserMsgResultMap">
 		select
 			<include refid="Field"></include>,
 			s.AUTOGRAPH,
@@ -174,15 +191,13 @@
 	</select>
 	
 	<!-- 批量删除 -->
-	<delete id="deleteAll" parameterType="String">
+	<delete id="deleteAllByIds" parameterType="String">
 		delete from
 		<include refid="tableName"></include>
 		where 
 			SYSMSG_ID in
-		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+		<foreach item="item" index="index" collection="ids" open="(" separator="," close=")">
                  #{item}
 		</foreach>
 	</delete>
-	
-	<!-- fh313596790qq(青苔) -->
 </mapper>

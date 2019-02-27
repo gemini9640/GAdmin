@@ -1,17 +1,24 @@
 package com.gadmin.dao;
 
-import com.gadmin.generated.db.SYSButton;
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.gadmin.entity.SYSButton;
+
 
 public interface SYSButtonMapper {
-    int deleteByPrimaryKey(String buttonId);
+    int deleteById(@Param("BUTTON_ID")String BUTTON_ID);
 
-    int insert(SYSButton record);
+    int save(SYSButton record);
+    
+    int edit(SYSButton record);
 
-    int insertSelective(SYSButton record);
+    SYSButton findById(@Param("BUTTON_ID")String BUTTON_ID);
 
-    SYSButton selectByPrimaryKey(String buttonId);
-
-    int updateByPrimaryKeySelective(SYSButton record);
-
-    int updateByPrimaryKey(SYSButton record);
+    List<SYSButton> datalistPage(@Param("keywords")String keywords);
+    
+    List<SYSButton> listAll();
+    
+    int deleteAllByIds(List ids);
 }

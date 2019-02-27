@@ -12,7 +12,7 @@
 		USERNAME,	
 		CZTIME,	
 		CONTENT,	
-		FHLOG_ID
+		LOG_ID
 	</sql>
 	
 	<!-- 字段值 -->
@@ -20,11 +20,11 @@
 		#{USERNAME},	
 		#{CZTIME},	
 		#{CONTENT},	
-		#{FHLOG_ID}
+		#{LOG_ID}
 	</sql>
 	
 	<!-- 新增-->
-	<insert id="save" parameterType="pd">
+	<insert id="save" parameterType="SYSLog">
 		insert into 
 	<include refid="tableName"></include>
 		(
@@ -35,49 +35,49 @@
 	</insert>
 	
 	<!-- 删除-->
-	<delete id="delete" parameterType="pd">
+	<delete id="deleteById" parameterType="String">
 		delete from
 		<include refid="tableName"></include>
 		where 
-			FHLOG_ID = #{FHLOG_ID}
+			LOG_ID = #{LOG_ID}
 	</delete>
 	
 	<!-- 通过ID获取数据 -->
-	<select id="findById" parameterType="pd" resultType="pd">
+	<select id="findById" parameterType="String" resultType="SYSLog">
 		select 
 		<include refid="Field"></include>
 		from 
 		<include refid="tableName"></include>
 		where 
-			FHLOG_ID = #{FHLOG_ID}
+			LOG_ID = #{LOG_ID}
 	</select>
 	
 	<!-- 列表 -->
-	<select id="datalistPage" parameterType="page" resultType="pd">
+	<select id="datalistPage" parameterType="map" resultType="SYSLog">
 		select
 		<include refid="Field"></include>
 		from 
 		<include refid="tableName"></include>
 		where 1=1
-		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+		<if test="keywords!= null and keywords != ''"><!-- 关键词检索 -->
 			and
 				(
-					USERNAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					USERNAME LIKE CONCAT(CONCAT('%', #{keywords}),'%')
 					or
-					CONTENT LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					CONTENT LIKE CONCAT(CONCAT('%', #{keywords}),'%')
 				)
 		</if>
-		<if test="pd.lastStart!=null and pd.lastStart!=''"><!-- 开始时间检索 -->
-			and CZTIME &gt;= #{pd.lastStart} 
+		<if test="lastStart!=null and lastStart!=''"><!-- 开始时间检索 -->
+			and CZTIME &gt;= #{lastStart} 
 		</if>
-		<if test="pd.lastEnd!=null and pd.lastEnd!=''"><!-- 结束时间检索 -->
-			and CZTIME &lt;= #{pd.lastEnd} 
+		<if test="lastEnd!=null and lastEnd!=''"><!-- 结束时间检索 -->
+			and CZTIME &lt;= #{lastEnd} 
 		</if>
 		order by CZTIME desc
 	</select>
 	
 	<!-- 列表(全部) -->
-	<select id="listAll" parameterType="pd" resultType="pd">
+	<select id="listAll" resultType="SYSLog">
 		select
 		<include refid="Field"></include>
 		from 
@@ -89,11 +89,9 @@
 		delete from
 		<include refid="tableName"></include>
 		where 
-			FHLOG_ID in
-		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+			LOG_ID in
+		<foreach item="item" index="index" collection="ids" open="(" separator="," close=")">
                  #{item}
 		</foreach>
 	</delete>
-	
-	<!-- fh313596790qq(青苔) -->
 </mapper>

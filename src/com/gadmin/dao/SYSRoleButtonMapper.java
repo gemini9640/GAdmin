@@ -1,17 +1,22 @@
 package com.gadmin.dao;
 
-import com.gadmin.generated.db.SYSRoleButton;
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.gadmin.entity.SYSLog;
+import com.gadmin.entity.SYSRoleButton;
+
 
 public interface SYSRoleButtonMapper {
-    int deleteByPrimaryKey(String rbId);
+    int deleteById(@Param("ROLE_ID")String ROLE_ID, @Param("BUTTON_ID")String BUTTON_ID);
 
-    int insert(SYSRoleButton record);
+    int save(SYSRoleButton record);
 
-    int insertSelective(SYSRoleButton record);
+    SYSRoleButton findById(@Param("ROLE_ID")String ROLE_ID, @Param("BUTTON_ID")String BUTTON_ID);
 
-    SYSRoleButton selectByPrimaryKey(String rbId);
-
-    int updateByPrimaryKeySelective(SYSRoleButton record);
-
-    int updateByPrimaryKey(SYSRoleButton record);
+    List<SYSLog> listAll();
+    
+    List<String> listAllBrAndQxname(@Param("ROLE_ID")String ROLE_ID);
+    
 }

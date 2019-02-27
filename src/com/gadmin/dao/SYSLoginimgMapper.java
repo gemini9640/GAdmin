@@ -1,17 +1,24 @@
 package com.gadmin.dao;
 
-import com.gadmin.generated.db.SYSLoginimg;
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.gadmin.entity.SYSLoginimg;
+
 
 public interface SYSLoginimgMapper {
-    int deleteByPrimaryKey(String loginimgId);
+    int deleteById(@Param("LOGINIMG_ID")String LOGINIMG_ID);
 
-    int insert(SYSLoginimg record);
+    int save(SYSLoginimg record);
 
-    int insertSelective(SYSLoginimg record);
+    int edit(SYSLoginimg record);
 
-    SYSLoginimg selectByPrimaryKey(String loginimgId);
+    SYSLoginimg findById(@Param("LOGINIMG_ID")String LOGINIMG_ID);
 
-    int updateByPrimaryKeySelective(SYSLoginimg record);
+    List<SYSLoginimg> datalistPage(@Param("keywords")String keywords);
 
-    int updateByPrimaryKey(SYSLoginimg record);
+    List<SYSLoginimg> listAll();
+    
+    int deleteAllByIds(List ids);
 }

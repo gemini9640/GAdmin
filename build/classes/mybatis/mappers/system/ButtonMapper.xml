@@ -12,7 +12,7 @@
 		NAME,	
 		QX_NAME,	
 		BZ,	
-		FHBUTTON_ID
+		BUTTON_ID
 	</sql>
 	
 	<!-- 字段值 -->
@@ -20,11 +20,11 @@
 		#{NAME},	
 		#{QX_NAME},	
 		#{BZ},	
-		#{FHBUTTON_ID}
+		#{BUTTON_ID}
 	</sql>
 	
 	<!-- 新增-->
-	<insert id="save" parameterType="pd">
+	<insert id="save" parameterType="SYSButton">
 		insert into 
 	<include refid="tableName"></include>
 		(
@@ -35,24 +35,24 @@
 	</insert>
 	
 	<!-- 删除-->
-	<delete id="delete" parameterType="pd">
+	<delete id="deleteById" parameterType="pd">
 		delete from
 		<include refid="tableName"></include>
 		where 
-			FHBUTTON_ID = #{FHBUTTON_ID}
+			BUTTON_ID = #{BUTTON_ID}
 	</delete>
 	
 	<!-- 修改 -->
-	<update id="edit" parameterType="pd">
+	<update id="edit" parameterType="SYSButton">
 		update
 		<include refid="tableName"></include>
 		set 
 			NAME = #{NAME},
 			QX_NAME = #{QX_NAME},
 			BZ = #{BZ},
-		FHBUTTON_ID = FHBUTTON_ID
+		BUTTON_ID = BUTTON_ID
 		where 
-		FHBUTTON_ID = #{FHBUTTON_ID}
+		BUTTON_ID = #{BUTTON_ID}
 	</update>
 	
 	<!-- 通过ID获取数据 -->
@@ -62,29 +62,29 @@
 		from 
 		<include refid="tableName"></include>
 		where 
-			FHBUTTON_ID = #{FHBUTTON_ID}
+			BUTTON_ID = #{BUTTON_ID}
 	</select>
 	
 	<!-- 列表 -->
-	<select id="datalistPage" parameterType="page" resultType="pd">
+	<select id="datalistPage" parameterType="map" resultType="SYSButton">
 		select
 		<include refid="Field"></include>
 		from 
 		<include refid="tableName"></include>
 		where 1=1
-		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+		<if test="keywords!= null and keywords != ''"><!-- 关键词检索 -->
 		and
 			(
-				NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				NAME LIKE CONCAT(CONCAT('%', #{keywords}),'%')
 				 or 
-				QX_NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				QX_NAME LIKE CONCAT(CONCAT('%', #{keywords}),'%') 
 			)
 				
 		</if>
 	</select>
 	
 	<!-- 列表(全部) -->
-	<select id="listAll" parameterType="pd" resultType="pd">
+	<select id="listAll" resultType="SYSButton">
 		select
 		<include refid="Field"></include>
 		from 
@@ -96,11 +96,9 @@
 		delete from
 		<include refid="tableName"></include>
 		where 
-			FHBUTTON_ID in
-		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+			BUTTON_ID in
+		<foreach item="item" index="index" collection="ids" open="(" separator="," close=")">
                  #{item}
 		</foreach>
 	</delete>
-	
-	<!-- fh313596790qq(青苔) -->
 </mapper>

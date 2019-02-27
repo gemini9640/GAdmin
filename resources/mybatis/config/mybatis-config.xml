@@ -53,7 +53,9 @@
 		<typeAlias type="com.gadmin.entity.join.GroupFriendsWithStatus" alias="GroupFriendsWithStatus"/>
 		<typeAlias type="com.gadmin.entity.join.ConnectedFriends" alias="ConnectedFriends"/>
 		<typeAlias type="com.gadmin.entity.join.QuickSearchFriends" alias="QuickSearchFriends"/>
-		
+		<typeAlias type="com.gadmin.entity.join.GroupMembers" alias="GroupMembers"/>
+		<typeAlias type="com.gadmin.entity.join.GroupMembersDetail" alias="GroupMembersDetail"/>
+		<typeAlias type="com.gadmin.entity.join.UserMsg" alias="UserMsg"/>
 		
 		
 		<typeAlias type="com.gadmin.entity.summery.OutkuOrder" alias="OutkuOrder"/>

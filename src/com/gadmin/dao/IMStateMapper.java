@@ -1,17 +1,30 @@
 package com.gadmin.dao;
 
-import com.gadmin.generated.db.IMState;
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.gadmin.entity.IMState;
+
 
 public interface IMStateMapper {
-    int deleteByPrimaryKey(String imstateId);
+    int deleteById(@Param("IMSTATE_ID")String IMSTATE_ID);
 
-    int insert(IMState record);
+    int save(IMState record);
+    
+    int editOnline(IMState record);
+    
+    int editAuto(IMState record);
+    
+    int editSign(IMState record);
 
-    int insertSelective(IMState record);
+    IMState findById(@Param("IMSTATE_ID")String IMSTATE_ID);
 
-    IMState selectByPrimaryKey(String imstateId);
-
-    int updateByPrimaryKeySelective(IMState record);
-
-    int updateByPrimaryKey(IMState record);
+    IMState findByUsername(@Param("USERNAME")String USERNAME);
+    
+    List<IMState> datalistPage(@Param("keywords")String keywords);
+    
+    List<IMState> listAll();
+    
+    int deleteAllByIds(List ids);
 }

@@ -1,17 +1,26 @@
 package com.gadmin.dao;
 
-import com.gadmin.generated.db.SYSDictionaries;
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.gadmin.entity.SYSDictionaries;
+
 
 public interface SYSDictionariesMapper {
-    int deleteByPrimaryKey(String dictionariesId);
+    int deleteById(@Param("DICTIONARIES_ID")String DICTIONARIES_ID);
 
-    int insert(SYSDictionaries record);
+    int save(SYSDictionaries record);
 
-    int insertSelective(SYSDictionaries record);
+    int edit(SYSDictionaries record);
+    
+    SYSDictionaries findById(@Param("DICTIONARIES_ID")String DICTIONARIES_ID);
 
-    SYSDictionaries selectByPrimaryKey(String dictionariesId);
+    SYSDictionaries findByBianma(@Param("BIANMA")String BIANMA);
 
-    int updateByPrimaryKeySelective(SYSDictionaries record);
-
-    int updateByPrimaryKey(SYSDictionaries record);
+    List<SYSDictionaries> datalistPage(@Param("DICTIONARIES_ID")String DICTIONARIES_ID, @Param("keywords")String keywords);
+    
+    List<SYSDictionaries> listSubDictByParentId(@Param("parentId")String parentId);
+    
+    Integer findFromTbs(@Param("thisTable")String thisTable, @Param("BIANMA")String BIANMA);
 }

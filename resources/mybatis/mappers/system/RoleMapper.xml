@@ -3,7 +3,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gadmin.dao.SYSRoleMapper">
 	
-	<resultMap type="Role" id="roleResultMap">
+	<resultMap type="SYSRole" id="roleResultMap">
 		<id column="ROLE_ID" property="ROLE_ID"/>
 		<result column="ROLE_NAME" property="ROLE_NAME"/>
 		<result column="RIGHTS" property="RIGHTS"/>
@@ -39,7 +39,7 @@
 	</sql>
 	
 	<!-- 列出此组下的角色 -->
-	<select id="listAllRolesByPId" resultMap="roleResultMap">
+	<select id="listAllRolesByPId" parameterType="String" resultMap="roleResultMap">
 		select
 		<include refid="Field"></include>
 		from
@@ -50,7 +50,7 @@
 	</select>
 	
 	<!-- 通过id查找 -->
-	<select id="findObjectById" parameterType="pd" resultType="pd">
+	<select id="findObjectById" parameterType="String" resultType="SYSRole">
 		select  
 		<include refid="Field"></include>
 		from 
@@ -59,7 +59,7 @@
 	</select>
 	
 	<!-- 添加 -->
-	<insert id="insert" parameterType="pd">
+	<insert id="insert" parameterType="SYSRole">
 		insert into 
 		<include refid="tableName"></include>
 		(
@@ -70,7 +70,7 @@
 	</insert>
 	
 	<!-- 保存修改 -->
-	<update id="edit" parameterType="pd">
+	<update id="edit" parameterType="SYSRole">
 		update 
 		<include refid="tableName"></include>
 		set ROLE_NAME = #{ROLE_NAME}
@@ -85,7 +85,7 @@
 	</delete>
 	
 	<!-- 给当前角色附加菜单权限  -->
-	<update id="updateRoleRights" parameterType="Role">
+	<update id="updateRoleRights" parameterType="SYSRole">
 		update 
 		<include refid="tableName"></include>
 		set RIGHTS=#{RIGHTS} 
@@ -100,7 +100,7 @@
 	</select>
 	
 	<!-- 给全部子角色加菜单权限 -->
-	<update id="setAllRights" parameterType="pd">
+	<update id="setAllRights" parameterType="map">
 		update 
 		<include refid="tableName"></include> 
 		set RIGHTS=#{rights} 
@@ -108,7 +108,7 @@
 	</update>
 	
 	<!-- 新增权限 -->
-	<update id="add_qx" parameterType="pd">
+	<update id="addRole" parameterType="map">
 		update 
 		<include refid="tableName"></include> 
 		set ADD_QX=#{value} 
@@ -116,7 +116,7 @@
 	</update>
 	
 	<!-- 删除权限 -->
-	<update id="del_qx" parameterType="pd">
+	<update id="delRole" parameterType="map">
 		update
 		<include refid="tableName"></include>
 		set DEL_QX=#{value} 
@@ -124,7 +124,7 @@
 	</update>
 	
 	<!-- 修改权限 -->
-	<update id="edit_qx" parameterType="pd">
+	<update id="editRole" parameterType="map">
 		update 
 		<include refid="tableName"></include> 
 		set EDIT_QX=#{value} 
@@ -132,12 +132,10 @@
 	</update>
 	
 	<!-- 查看权限 -->
-	<update id="cha_qx" parameterType="pd">
+	<update id="viewRole" parameterType="map">
 		update 
 		<include refid="tableName"></include>
 		set CHA_QX=#{value} 
 		where ROLE_ID=#{ROLE_ID}
 	</update>
-	
-	<!-- fh313596790qq(青苔) -->
 </mapper>

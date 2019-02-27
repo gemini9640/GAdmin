@@ -1,55 +1,55 @@
 package com.gadmin.entity;
 
 public class SYSButton {
-    private String buttonId;
+    private String BUTTON_ID;
 
-    private String name;
+    private String NAME;
 
-    private String qxName;
+    private String QX_NAME;
 
-    private String bz;
+    private String BZ;
 
-    public SYSButton(String buttonId, String name, String qxName, String bz) {
-        this.buttonId = buttonId;
-        this.name = name;
-        this.qxName = qxName;
-        this.bz = bz;
+    public SYSButton(String BUTTON_ID, String NAME, String QX_NAME, String BZ) {
+        this.BUTTON_ID = BUTTON_ID;
+        this.NAME = NAME;
+        this.QX_NAME = QX_NAME;
+        this.BZ = BZ;
     }
 
     public SYSButton() {
         super();
     }
 
-    public String getButtonId() {
-        return buttonId;
+    public String getBUTTON_ID() {
+        return BUTTON_ID;
     }
 
-    public void setButtonId(String buttonId) {
-        this.buttonId = buttonId == null ? null : buttonId.trim();
+    public void setBUTTON_ID(String BUTTON_ID) {
+        this.BUTTON_ID = BUTTON_ID == null ? null : BUTTON_ID.trim();
     }
 
-    public String getName() {
-        return name;
+    public String getNAME() {
+        return NAME;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setNAME(String NAME) {
+        this.NAME = NAME == null ? null : NAME.trim();
     }
 
-    public String getQxName() {
-        return qxName;
+    public String getQX_NAME() {
+        return QX_NAME;
     }
 
-    public void setQxName(String qxName) {
-        this.qxName = qxName == null ? null : qxName.trim();
+    public void setQX_NAME(String QX_NAME) {
+        this.QX_NAME = QX_NAME == null ? null : QX_NAME.trim();
     }
 
-    public String getBz() {
-        return bz;
+    public String getBZ() {
+        return BZ;
     }
 
-    public void setBz(String bz) {
-        this.bz = bz == null ? null : bz.trim();
+    public void setBZ(String BZ) {
+        this.BZ = BZ == null ? null : BZ.trim();
     }
 
     @Override
@@ -58,10 +58,10 @@ public class SYSButton {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", buttonId=").append(buttonId);
-        sb.append(", name=").append(name);
-        sb.append(", qxName=").append(qxName);
-        sb.append(", bz=").append(bz);
+        sb.append(", BUTTON_ID=").append(BUTTON_ID);
+        sb.append(", NAME=").append(NAME);
+        sb.append(", QX_NAME=").append(QX_NAME);
+        sb.append(", BZ=").append(BZ);
         sb.append("]");
         return sb.toString();
     }

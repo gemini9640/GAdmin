@@ -1,17 +1,24 @@
 package com.gadmin.dao;
 
-import com.gadmin.generated.db.SYSUserphoto;
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.gadmin.entity.SYSUserphoto;
+
 
 public interface SYSUserphotoMapper {
-    int deleteByPrimaryKey(String userphotoId);
+    int deleteById(@Param("USERPHOTO_ID")String USERPHOTO_ID);
 
-    int insert(SYSUserphoto record);
+    int save(SYSUserphoto record);
+    
+    int edit(SYSUserphoto record);
 
-    int insertSelective(SYSUserphoto record);
+    SYSUserphoto findByUsername(@Param("USERNAME")String USERNAME);
 
-    SYSUserphoto selectByPrimaryKey(String userphotoId);
-
-    int updateByPrimaryKeySelective(SYSUserphoto record);
-
-    int updateByPrimaryKey(SYSUserphoto record);
+    List<SYSUserphoto> datalistPage(@Param("keywords")String keywords);
+    
+    List<SYSUserphoto> listAll();
+    
+    int deleteAllByIds(List ids);
 }

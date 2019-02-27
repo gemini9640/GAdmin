@@ -1,17 +1,22 @@
 package com.gadmin.dao;
 
-import com.gadmin.generated.db.SYSLog;
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.gadmin.entity.SYSLog;
+
 
 public interface SYSLogMapper {
-    int deleteByPrimaryKey(String logId);
+    int deleteById(@Param("LOG_ID")String LOG_ID);
 
-    int insert(SYSLog record);
+    int save(SYSLog record);
 
-    int insertSelective(SYSLog record);
+    SYSLog findById(@Param("LOG_ID")String LOG_ID);
 
-    SYSLog selectByPrimaryKey(String logId);
+    List<SYSLog> datalistPage(@Param("keywords")String keywords, @Param("lastStart")String lastStart, @Param("lastEnd")String lastEnd);
 
-    int updateByPrimaryKeySelective(SYSLog record);
-
-    int updateByPrimaryKey(SYSLog record);
+    List<SYSLog> listAll();
+    
+    int deleteAllByIds(List ids);
 }
