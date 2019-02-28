@@ -131,7 +131,7 @@
 	</select>
 	
 	<!-- 列表(全部群成员)带分页 -->
-	<select id="memberslistPage" parameterType="map" resultType="GroupMembersResultMap">
+	<select id="memberslistPage" parameterType="map" resultMap="GroupMembersResultMap">
 		select
 			f.USERNAME,
 			u.NAME,
@@ -161,7 +161,7 @@
 	</select>
 	
 	<!-- 列表(全部群成员) -->
-	<select id="listAllByGroupId" parameterType="String" resultType="GroupMembersDetailResultMap">
+	<select id="listAllByGroupId" parameterType="String" resultMap="GroupMembersDetailResultMap">
 		select
 			f.USERNAME,
 			f.QGROUPS,

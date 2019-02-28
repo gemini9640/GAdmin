@@ -112,7 +112,7 @@
 	</select>
 	
 	<!-- 列表 -->
-	<select id="datalistPage" parameterType="map" resultType="CustomerWithLevelResultMap">
+	<select id="datalistPage" parameterType="map" resultMap="CustomerWithLevelResultMap">
 		select
 			a.NAME,	
 			a.AGE,	

@@ -15,7 +15,7 @@ public interface CPGoodsMapper {
 	
 	int edit(CPGoods record);
 	
-	int editInstockById(@Param("GOODS_ID")String GOODS_ID, @Param("ZCOUNT")String ZCOUNT);
+	int editInstockById(@Param("GOODS_ID")String GOODS_ID, @Param("ZCOUNT")Integer ZCOUNT);
 	
 	CPGoods findById(@Param("GOODS_ID")String GOODS_ID);
 	

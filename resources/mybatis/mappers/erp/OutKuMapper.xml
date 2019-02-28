@@ -231,7 +231,7 @@
 	</select>
 	
 	<!-- 临时表总金额 -->
-	<select id="priceSumTempByOrderNumber" parameterType="Stirng" resultType="Double">
+	<select id="priceSumTempByOrderNumber" parameterType="String" resultType="Double">
 		select
 			sum(ZPRICE) ZPRICE
 		from 

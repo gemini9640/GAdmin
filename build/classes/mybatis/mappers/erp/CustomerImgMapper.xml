@@ -54,7 +54,7 @@
 	</update>
 	
 	<!-- 通过ID获取数据 -->
-	<select id="findById" parameterType="Stirng" resultType="ERPCustomerimg">
+	<select id="findById" parameterType="String" resultType="ERPCustomerimg">
 		select 
 		<include refid="Field"></include>
 		from 

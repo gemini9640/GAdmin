@@ -19,22 +19,19 @@ import com.gadmin.util.UuidUtil;
 
 
 
-public class TestMapper {
-	private static ApplicationContext ctx; 
+public class TestMapper extends TestBase{
 	private static CPSPBrandMapper cPSPBrandMapper;
 	private static SYSUserMapper sYSUserMapper;
 	private static CPGoodsMapper cpGoodsMapper;
-    
-	private static void init() {
-		ctx = new ClassPathXmlApplicationContext("/spring/applicationContext-main.xml");
-//		cPSPBrandMapper = (CPSPBrandMapper) ctx.getBean("cPSPBrandMapper");
-//		sYSUserMapper = (SYSUserMapper) ctx.getBean("SYSUserMapper");
-		cpGoodsMapper = (CPGoodsMapper) ctx.getBean("CPGoodsMapper");
-	}
 	
 	public static void main(String[] args) {
 		try {
-			init();
+//			cPSPBrandMapper = (CPSPBrandMapper) ctx.getBean("cPSPBrandMapper");
+//			sYSUserMapper = (SYSUserMapper) ctx.getBean("SYSUserMapper");
+			cpGoodsMapper = (CPGoodsMapper) ctx.getBean("CPGoodsMapper");
+			
+			
+			
 //			testSYSUserMapper();
 			testCPGoodsMapper();
 		} catch (Exception e) {

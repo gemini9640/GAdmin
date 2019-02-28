@@ -180,7 +180,7 @@
 	
 	
 	<!-- 列表 -->
-	<select id="datalistPage" parameterType="map" resultType="GroupFriendsResultMap">
+	<select id="datalistPage" parameterType="map" resultMap="GroupFriendsResultMap">
 		select
 			<include refid="Field"></include>,
 			u.NAME,
@@ -224,7 +224,7 @@
 	</select>
 	
 	<!-- 列表(全部自己的好友) -->
-	<select id="listAllWithStatusByUsername" parameterType="String" resultType="GroupFriendsWithStatusResultMap">
+	<select id="listAllWithStatusByUsername" parameterType="String" resultMap="GroupFriendsWithStatusResultMap">
 		select
 			<include refid="Field"></include>,
 			u.NAME,
@@ -257,7 +257,7 @@
 	</select>
 	
 	<!-- 获取某个好友详细信息 -->
-	<select id="getTheFriend" parameterType="map" resultType="GroupFriendsWithStatusResultMap">
+	<select id="getTheFriend" parameterType="map" resultMap="GroupFriendsWithStatusResultMap">
 		select
 			<include refid="Field"></include>,
 			u.NAME,
@@ -290,7 +290,7 @@
 	</select>
 	
 	<!-- 列表(全部有自己好友的用户) -->
-	<select id="listAllConnectedFriends" parameterType="String" resultType="ConnectedFriendsResultMap">
+	<select id="listAllConnectedFriends" parameterType="String" resultMap="ConnectedFriendsResultMap">
 		select
 			f.USERNAME,
 			u.NAME
@@ -307,7 +307,7 @@
 	</select>
 	
 	<!-- 列表(添加好友页面检索好友) -->
-	<select id="listAllToSearch" parameterType="map" resultType="QuickSearchFriendsResultMap">
+	<select id="listAllToSearch" parameterType="map" resultMap="QuickSearchFriendsResultMap">
 		select
 			u.NAME,
 			u.USERNAME,

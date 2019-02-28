@@ -16,7 +16,9 @@ public interface ERPCustomerimgMapper {
     
     ERPCustomerimg findById(@Param("CUSTOMERIMG_ID")String CUSTOMERIMG_ID);
 
-    List listAll();
+    List<ERPCustomerimg> listAll();
+    
+    List<ERPCustomerimg> datalistPage(@Param("keywords")String keywords, @Param("CUSTOMERIMG_ID")String CUSTOMERIMG_ID);
     
     int deleteAll(@Param("ids")List ids);
     

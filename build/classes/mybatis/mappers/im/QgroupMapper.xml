@@ -59,7 +59,7 @@
 	</delete>
 	
 	<!-- 删除图片 -->
-	<update id=delImgById parameterType="String">
+	<update id="delImgById" parameterType="String">
 		update
 		<include refid="tableName"></include>
 		set 

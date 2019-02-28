@@ -102,7 +102,7 @@
 	</select>
 	
 	<!-- 列表 -->
-	<select id="datalistPage" parameterType="map" resultType="GoodsIntokuResultMap">
+	<select id="datalistPage" parameterType="map" resultMap="GoodsIntokuResultMap">
 		select
 			a.GOODS_ID,
 			a.GOODS_NAME,
