@@ -15,8 +15,7 @@ public interface ERPRemarksMapper {
 
 	ERPRemarks findById(@Param("REMARKS_ID") String REMARKS_ID);
 
-	List<ERPRemarks> datalistPage(@Param("keywords") String keywords,
-			@Param("USERNAME") String USERNAME);
+	List<ERPRemarks> datalistPage(@Param("keywords") String keywords, @Param("USERNAME") String USERNAME);
 
 	List<ERPRemarks> listAllByUsername(@Param("USERNAME") String USERNAME);
 

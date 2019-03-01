@@ -16,8 +16,9 @@ public interface CPSPTypeMapper {
 
     CPSPType findById(@Param("SPTYPE_ID")String SPTYPE_ID);
     
-    List datalistPage(@Param("keywords")String keywords, @Param("USERNAME")String USERNAME);
+    List<CPSPType> datalistPage(@Param("keywords")String keywords, @Param("USERNAME")String USERNAME);
     
-    List listAllByUsername(@Param("USERNAME")String USERNAME);
+    List<CPSPType> listAllByUsername(@Param("USERNAME")String USERNAME);
     
+    int deleteAll(@Param("ids")List ids);
 }

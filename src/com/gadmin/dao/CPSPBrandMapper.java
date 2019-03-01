@@ -16,9 +16,9 @@ public interface CPSPBrandMapper {
 
     int edit(CPSPBrand record);
     
-    List datalistPage(@Param("keywords")String keywords, @Param("USERNAME")String USERNAME);
+    List<CPSPBrand> datalistPage(@Param("keywords")String keywords, @Param("USERNAME")String USERNAME);
     
-    List listAllByUsername(@Param("USERNAME")String USERNAME);
+    List<CPSPBrand> listAllByUsername(@Param("USERNAME")String USERNAME);
     
     int deleteAll(@Param("ids")List ids);
 }
