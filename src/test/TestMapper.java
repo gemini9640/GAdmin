@@ -57,6 +57,7 @@ public class TestMapper extends TestBase{
 	}
 	
 	public static void testSYSUserMapper() {
+		//test
 		String USERNAME = "admin";
 		String PASSWORD = "1";
 		String passwd = new SimpleHash("SHA-1", USERNAME, PASSWORD).toString();
